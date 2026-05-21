@@ -1,0 +1,1938 @@
+
+<!-- saved from url=(0048)file:///C:/Users/Administrator/Downloads/gy.html -->
+<html lang="it"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FisioCRM </title>
+<link href="./FisioCRM_files/css2" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --verde:#006B54;--verdeL:#C8F0E3;--verdeD:#004D3B;--verdeM:#00896A;
+  --bg:#F5F7F5;--white:#fff;--border:#D4E5DE;
+  --text:#111C17;--muted:#5A7268;--mutedL:#A3BDB5;
+  --danger:#C0392B;--dangerL:#FDECEA;
+  --warn:#C47B00;--warnL:#FFF4D6;
+  --ok:#00785A;--okL:#D0F2E8;
+  --purple:#5B21B6;--purpleL:#EDE9FE;
+  --gold:#B8860B;--goldL:#FFF8E1;
+  --blue:#1D6FA4;--blueL:#DBEAFE;
+  --nav-h:64px;
+  --radius:14px;
+}
+/* DARK MODE */
+body.dark{
+  --bg:#0D1F18;--white:#152B22;--border:#1E3D2F;
+  --text:#E8F5EE;--muted:#7AADA0;--mutedL:#3D6055;
+  --verdeL:#0A3024;--verdeD:#5CC49A;--verde:#3DAA80;--verdeM:#4DC490;
+  --ok:#3DAA80;--okL:#0A3024;
+  --dangerL:#3B0F0A;--warnL:#2B1F00;--purpleL:#1A1040;
+}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;transition:background 0.3s,color 0.3s;}
+
+/* TOP NAV */
+.topnav{position:fixed;top:0;left:0;right:0;height:var(--nav-h);background:var(--white);border-bottom:1.5px solid var(--border);z-index:200;display:flex;align-items:center;padding:0 24px;gap:0;box-shadow:0 2px 16px rgba(0,107,84,0.07);}
+.nav-brand{font-family:'Fraunces',serif;font-size:20px;font-weight:700;color:var(--verdeD);letter-spacing:-0.5px;margin-right:32px;display:flex;align-items:center;gap:8px;white-space:nowrap;font-style:italic;}
+.nav-brand .brand-sub{font-size:10px;font-family:'DM Sans',sans-serif;font-style:normal;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);display:block;line-height:1;}
+.nav-brand-wrap{display:flex;flex-direction:column;gap:1px;}
+.nav-tabs{display:flex;align-items:center;gap:2px;flex:1;}
+.nav-tab{display:flex;align-items:center;gap:6px;padding:8px 14px;border-radius:8px;font-size:13px;font-weight:600;color:var(--muted);cursor:pointer;transition:all 0.15s;white-space:nowrap;position:relative;}
+.nav-tab:hover{background:var(--bg);color:var(--text);}
+.nav-tab.active{background:var(--verdeL);color:var(--verdeD);}
+.nav-tab .tab-badge{background:var(--verde);color:#fff;font-size:10px;padding:1px 5px;border-radius:10px;font-weight:700;}
+.nav-tab.active .tab-badge{background:var(--verdeD);}
+.nav-right{display:flex;align-items:center;gap:10px;margin-left:auto;}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:9px 16px;border-radius:9px;font-size:13px;font-weight:600;cursor:pointer;border:none;transition:all 0.18s;font-family:inherit;white-space:nowrap;}
+.btn-primary{background:var(--verde);color:#fff;}
+.btn-primary:hover{background:var(--verdeD);transform:translateY(-1px);box-shadow:0 4px 14px rgba(0,107,84,0.28);}
+.btn-secondary{background:var(--white);color:var(--muted);border:1px solid var(--border);}
+.btn-secondary:hover{background:var(--bg);color:var(--text);}
+.btn-danger{background:var(--danger);color:#fff;}
+.btn-danger:hover{background:#A93226;}
+.btn-warn{background:var(--warn);color:#fff;}
+.btn-blue{background:var(--blue);color:#fff;}
+.btn-sm{padding:5px 10px;font-size:12px;border-radius:6px;}
+.btn-icon{padding:7px;border-radius:8px;}
+
+/* MAIN */
+.main{padding-top:var(--nav-h);}
+.container{padding:28px 32px;max-width:1440px;margin:0 auto;}
+
+/* CARDS */
+.card{background:var(--white);border-radius:var(--radius);border:1px solid var(--border);padding:24px;margin-bottom:20px;}
+.card-title{font-size:15px;font-weight:700;color:var(--text);margin-bottom:16px;display:flex;align-items:center;justify-content:space-between;}
+
+/* STATS GRID */
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin-bottom:24px;}
+.stat-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:18px 20px;display:flex;flex-direction:column;gap:4px;transition:transform 0.195s,box-shadow 0.195s;cursor:pointer;}
+.stat-card:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,107,84,0.09);}
+.stat-icon{font-size:20px;margin-bottom:6px;}
+.stat-label{font-size:12px;color:var(--muted);font-weight:500;}
+.stat-val{font-size:22px;font-weight:700;letter-spacing:-0.5px;font-family:'Fraunces',serif;}
+.stat-sub{font-size:11px;color:var(--mutedL);}
+
+/* TABLE */
+.table-w{overflow-x:auto;border-radius:12px;border:1px solid var(--border);}
+table{width:100%;border-collapse:collapse;font-size:13px;}
+th{background:var(--bg);padding:12px 16px;font-weight:600;color:var(--muted);border-bottom:1px solid var(--border);font-size:12px;text-transform:uppercase;letter-spacing:0.4px;}
+td{padding:13px 16px;border-bottom:1px solid var(--border);color:var(--text);vertical-align:middle;}
+tr:last-child td{border-bottom:none;}
+tr:hover td{background:var(--bg);}
+.badge{display:inline-flex;align-items:center;padding:3px 8px;border-radius:6px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.3px;gap:4px;}
+.badge-activo{background:#D0F2E8;color:#005C44;}
+.badge-primeraconsulta{background:#EDE9FE;color:#5B21B6;}
+.badge-enpausa{background:#FFF4D6;color:#A06200;}
+.badge-altamedica{background:#F3F4F6;color:#4B5563;}
+.badge-info{background:var(--blueL);color:var(--blue);}
+.avatar{width:34px;height:34px;border-radius:10px;display:inline-flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:13px;flex-shrink:0;}
+.p-meta{display:flex;align-items:center;gap:10px;}
+.p-name{font-weight:600;color:var(--text);cursor:pointer;}
+.p-name:hover{color:var(--verde);}
+.p-sub{font-size:11px;color:var(--muted);margin-top:1px;}
+.pain-bar{width:60px;height:6px;background:#E5EAE8;border-radius:3px;overflow:hidden;display:inline-block;vertical-align:middle;margin-left:6px;}
+.pain-fill{height:100%;border-radius:3px;}
+
+/* MODAL */
+.modal-bg{position:fixed;inset:0;background:rgba(10,25,20,0.5);backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;z-index:500;padding:16px;}
+.modal-box{background:var(--white);border-radius:20px;width:100%;max-width:720px;box-shadow:0 30px 60px rgba(0,0,0,0.15);display:flex;flex-direction:column;max-height:92vh;}
+.modal-head{padding:20px 24px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+.modal-title{font-size:17px;font-weight:700;font-family:'Fraunces',serif;}
+.modal-body{padding:24px;overflow-y:auto;flex:1;}
+.modal-foot{padding:16px 24px;border-top:1px solid var(--border);display:flex;justify-content:flex-end;gap:10px;background:var(--bg);border-radius:0 0 20px 20px;}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;}
+.form-group{display:flex;flex-direction:column;gap:5px;}
+.form-group.full{grid-column:1/-1;}
+label{font-size:12px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:0.3px;}
+input[type="text"],input[type="number"],input[type="email"],input[type="date"],input[type="time"],textarea,select{padding:9px 12px;border:1.5px solid var(--border);border-radius:8px;font-size:13px;font-family:inherit;color:var(--text);background:var(--white);transition:border-color 0.15s;}
+input:focus,textarea:focus,select:focus{outline:none;border-color:var(--verde);box-shadow:0 0 0 3px rgba(0,107,84,0.1);}
+.tag-container{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px;}
+.tag-check{display:none;}
+.tag-label{padding:5px 11px;border:1.5px solid var(--border);border-radius:6px;font-size:12px;font-weight:500;cursor:pointer;background:var(--white);transition:all 0.15s;text-transform:none;letter-spacing:0;}
+.tag-check:checked + .tag-label{background:var(--verdeL);border-color:var(--verde);color:var(--verdeD);font-weight:600;}
+
+/* DOLORE SLIDER */
+.dolor-slider-wrap{display:flex;flex-direction:column;gap:6px;}
+.dolor-slider{-webkit-appearance:none;width:100%;height:8px;border-radius:4px;outline:none;cursor:pointer;background:linear-gradient(to right,#00896A,#F59E0B,#C0392B);}
+.dolor-slider::-webkit-slider-thumb{-webkit-appearance:none;width:20px;height:20px;border-radius:50%;background:#fff;border:3px solid var(--verde);box-shadow:0 2px 6px rgba(0,0,0,0.2);cursor:pointer;}
+.dolor-val{font-size:22px;font-weight:800;font-family:'Fraunces',serif;text-align:center;}
+
+/* PACIENTE DETALLE */
+.p-tab-nav{display:flex;gap:2px;border-bottom:1px solid var(--border);margin-bottom:20px;padding-bottom:0;}
+.p-tab{padding:9px 16px;font-size:13px;font-weight:600;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;border-radius:6px 6px 0 0;transition:all 0.15s;}
+.p-tab:hover{color:var(--text);background:var(--bg);}
+.p-tab.active{color:var(--verde);border-bottom-color:var(--verde);background:transparent;}
+.history-item{padding:14px;border:1px solid var(--border);border-radius:10px;margin-bottom:10px;background:var(--bg);}
+.history-meta{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-bottom:6px;align-items:center;}
+.history-text{font-size:13px;color:var(--text);white-space:pre-wrap;line-height:1.6;}
+
+/* PAGAMENTO CARDS */
+.pago-item{display:flex;justify-content:space-between;align-items:center;padding:14px 16px;border:1.95px solid var(--border);border-radius:12px;margin-bottom:10px;background:var(--white);transition:box-shadow 0.15s,border-color 0.15s;}
+.pago-item:hover{box-shadow:0 4px 14px rgba(0,107,84,0.08);border-color:var(--verdeL);}
+.pago-metodo-icon{width:36px;height:36px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+
+/* METODO PILL SELECTOR */
+.metodo-pills{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-bottom:14px;}
+.metodo-pill{padding:10px 6px;border-radius:10px;border:2px solid var(--border);background:var(--white);cursor:pointer;text-align:center;transition:all 0.15s;font-size:11px;font-weight:600;color:var(--muted);}
+.metodo-pill:hover{border-color:var(--verde);background:var(--verdeL);}
+.metodo-pill.active{border-color:var(--verde);background:var(--verdeL);color:var(--verdeD);}
+.metodo-pill .mp-icon{font-size:20px;display:block;margin-bottom:4px;}
+
+/* SEARCH */
+.search-row{display:flex;gap:10px;margin-bottom:16px;align-items:center;flex-wrap:wrap;}
+.search-input{flex:1;min-width:220px;padding:9px 14px;border:1.5px solid var(--border);border-radius:8px;font-size:13px;font-family:inherit;background:var(--white);color:var(--text);}
+.search-input:focus{outline:none;border-color:var(--verde);}
+
+/* CALENDARIO */
+.cal-wrap{display:grid;grid-template-columns:1fr 340px;gap:20px;}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;}
+.cal-header-days{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;margin-bottom:4px;}
+.cal-day-name{text-align:center;font-size:11px;font-weight:700;color:var(--muted);padding:6px 0;text-transform:uppercase;}
+.cal-cell{aspect-ratio:1;border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;font-size:13px;font-weight:500;color:var(--text);transition:all 0.15s;position:relative;padding:4px;min-height:52px;}
+.cal-cell:hover{background:var(--verdeL);}
+.cal-cell.other-month{color:var(--mutedL);}
+.cal-cell.today{background:var(--verde);color:#fff;font-weight:800;}
+.cal-cell.today:hover{background:var(--verdeD);}
+.cal-cell.has-citas{background:#E0F4EC;}
+.cal-cell.has-citas:hover{background:var(--verdeL);}
+.cal-cell.selected{background:var(--verdeL);border:2px solid var(--verde);}
+.cal-cell.worked{background:var(--bg);}
+.cal-dots{display:flex;gap:2px;margin-top:2px;flex-wrap:wrap;justify-content:center;}
+.cal-dot{width:5px;height:5px;border-radius:50%;}
+.cal-nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;}
+.cal-nav-title{font-size:16px;font-weight:700;font-family:'Fraunces',serif;color:var(--text);}
+.cal-nav-btn{width:32px;height:32px;border-radius:8px;border:1px solid var(--border);background:var(--white);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:14px;transition:all 0.15s;color:var(--text);}
+.cal-nav-btn:hover{background:var(--verdeL);border-color:var(--verde);}
+.cal-panel{display:flex;flex-direction:column;gap:12px;}
+.cal-panel-date{font-size:15px;font-weight:700;margin-bottom:4px;}
+.cal-panel-empty{font-size:13px;color:var(--muted);text-align:center;padding:20px 0;}
+/* VISITA CARD — colori distinti */
+.cita-item{padding:12px 14px;border-radius:10px;border:1px solid var(--border);cursor:pointer;transition:box-shadow 0.15s,transform 0.15s;margin-bottom:6px;}
+.cita-item:hover{box-shadow:0 3px 12px rgba(0,107,84,0.12);transform:translateX(2px);}
+.cita-item.programmata{border-left:4px solid #3B82F6;background:#EFF6FF;}
+.cita-item.svolta{border-left:4px solid var(--ok);background:#F0FDF4;}
+.cita-hora{font-size:11px;font-weight:700;margin-bottom:2px;}
+.cita-hora.programmata{color:#3B82F6;}
+.cita-hora.svolta{color:var(--ok);}
+.cita-pac{font-size:13px;font-weight:600;color:var(--text);}
+.cita-sub{font-size:11px;color:var(--muted);}
+.free-slot{padding:8px 12px;border-radius:8px;background:var(--bg);border:1px dashed var(--border);display:flex;align-items:center;justify-content:space-between;font-size:12px;color:var(--muted);}
+.time-slots{display:flex;flex-direction:column;gap:6px;max-height:420px;overflow-y:auto;}
+.legend{display:flex;gap:14px;flex-wrap:wrap;margin-top:8px;}
+.legend-item{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--muted);}
+.legend-dot{width:10px;height:10px;border-radius:3px;}
+
+/* CALCOLATRICE */
+.calc-hero{background:linear-gradient(160deg,#004D3B 0%,#006B54 50%,#00896A 100%);border-radius:20px;padding:32px;color:#fff;margin-bottom:20px;position:relative;overflow:hidden;}
+.calc-hero::before{content:'';position:absolute;top:-40px;right:-40px;width:200px;height:200px;border-radius:50%;background:rgba(255,255,255,0.04);}
+.calc-hero::after{content:'';position:absolute;bottom:-60px;left:-20px;width:260px;height:260px;border-radius:50%;background:rgba(255,255,255,0.03);}
+.calc-hero-title{font-family:'Fraunces',serif;font-size:13px;font-weight:300;letter-spacing:2px;text-transform:uppercase;opacity:0.7;margin-bottom:6px;}
+.calc-amount-display{font-family:'Fraunces',serif;font-size:52px;font-weight:700;letter-spacing:-2px;margin-bottom:4px;position:relative;z-index:1;}
+.calc-amount-sub{font-size:12px;opacity:0.6;margin-bottom:24px;}
+.calc-metodi{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:24px;position:relative;z-index:1;}
+.calc-metodo-btn{padding:10px 4px;border-radius:10px;border:1.5px solid rgba(255,255,255,0.2);background:rgba(255,255,255,0.08);cursor:pointer;text-align:center;transition:all 0.15s;font-size:11px;font-weight:600;color:rgba(255,255,255,0.7);}
+.calc-metodo-btn:hover{background:rgba(255,255,255,0.16);}
+.calc-metodo-btn.active{background:rgba(255,255,255,0.95);color:var(--verdeD);border-color:transparent;}
+.calc-metodo-btn .cmi{font-size:18px;display:block;margin-bottom:3px;}
+.calc-input-wrap{position:relative;z-index:1;margin-bottom:20px;}
+.calc-euro-input{background:rgba(255,255,255,0.12);border:2px solid rgba(255,255,255,0.25);border-radius:14px;padding:14px 20px;font-size:28px;font-weight:700;font-family:'Fraunces',serif;color:#fff;width:100%;text-align:center;letter-spacing:-0.5px;}
+.calc-euro-input::placeholder{color:rgba(255,255,255,0.35);}
+.calc-euro-input:focus{outline:none;background:rgba(255,255,255,0.18);border-color:rgba(255,255,255,0.5);}
+.calc-breakdown{position:relative;z-index:1;background:rgba(0,0,0,0.15);border-radius:14px;padding:16px;}
+.calc-breakdown-row{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid rgba(255,255,255,0.08);font-size:13px;}
+.calc-breakdown-row:last-child{border-bottom:none;}
+.calc-breakdown-row.total-row{padding-top:12px;font-size:16px;font-family:'Fraunces',serif;}
+.cb-label{opacity:0.75;}
+.cb-val{font-weight:700;}
+.cb-neg{color:#FCA5A5;}
+.cb-pos{color:#6EE7B7;}
+.cb-final{font-size:22px;color:#6EE7B7;font-family:'Fraunces',serif;}
+.cb-zero{opacity:0.45;}
+
+/* CONTABILITA' */
+.chart-bar-wrap{display:flex;flex-direction:column;gap:8px;}
+.chart-bar-row{display:flex;align-items:center;gap:10px;font-size:12px;}
+.chart-bar-label{width:90px;color:var(--muted);text-align:right;flex-shrink:0;font-weight:500;}
+.chart-bar-bg{flex:1;background:var(--border);border-radius:4px;height:20px;overflow:hidden;}
+.chart-bar-fill{height:100%;background:var(--verde);border-radius:4px;transition:width 0.7s ease;}
+.chart-bar-val{width:64px;font-weight:700;text-align:left;color:var(--text);}
+
+/* MONTHLY CHART */
+.month-income-card{background:linear-gradient(135deg,var(--verdeD),var(--verde));border-radius:var(--radius);padding:20px;color:#fff;}
+.month-bar-container{display:flex;align-items:flex-end;gap:4px;height:80px;margin-top:12px;}
+
+/* DASHBOARD */
+.dashboard-header{margin-bottom:28px;}
+.dashboard-title{font-family:'Fraunces',serif;font-size:28px;font-weight:700;color:var(--text);letter-spacing:-0.5px;}
+.dashboard-sub{font-size:14px;color:var(--muted);margin-top:4px;}
+
+/* INCOME SUMMARY CARD */
+.income-summary{background:linear-gradient(160deg,#004D3B,#006B54);border-radius:var(--radius);padding:24px;color:#fff;position:relative;overflow:hidden;}
+.income-summary::before{content:'';position:absolute;top:-30px;right:-30px;width:150px;height:150px;border-radius:50%;background:rgba(255,255,255,0.05);}
+.income-month-label{font-size:12px;opacity:0.65;letter-spacing:1px;text-transform:uppercase;margin-bottom:8px;}
+.income-month-amount{font-family:'Fraunces',serif;font-size:36px;font-weight:700;letter-spacing:-1px;margin-bottom:4px;}
+.income-month-sub{font-size:12px;opacity:0.65;}
+.income-pills{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap;}
+.income-pill{background:rgba(255,255,255,0.12);border-radius:8px;padding:6px 10px;font-size:11px;font-weight:600;}
+.income-pill strong{display:block;font-size:14px;margin-bottom:1px;}
+
+/* ALERTA PAZIENTI SENZA CITA */
+.alert-banner{background:var(--warnL);border:1px solid var(--warn);border-radius:10px;padding:12px 16px;margin-bottom:16px;display:flex;align-items:center;gap:10px;font-size:13px;color:var(--warn);}
+
+/* DOLOR HISTORY GRAPH */
+.dolor-graph{display:flex;align-items:flex-end;gap:3px;height:50px;margin-top:8px;}
+.dolor-bar{flex:1;border-radius:3px 3px 0 0;min-width:8px;transition:height 0.4s;}
+
+/* SCROLL */
+::-webkit-scrollbar{width:6px;}
+::-webkit-scrollbar-track{background:transparent;}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px;}
+
+/* TOAST */
+.toast{position:fixed;bottom:24px;right:24px;background:#0D2B22;color:#fff;padding:12px 18px;border-radius:10px;font-size:13px;font-weight:500;z-index:999;transform:translateY(100px);opacity:0;transition:all 0.3s;pointer-events:none;box-shadow:0 8px 24px rgba(0,0,0,0.2);}
+.toast.show{transform:translateY(0);opacity:1;}
+
+/* STORAGE WARNING */
+.storage-bar{height:4px;background:var(--border);border-radius:2px;overflow:hidden;margin-top:4px;}
+.storage-fill{height:100%;border-radius:2px;transition:width 0.5s;}
+</style>
+</head>
+<body class="dark">
+
+<div class="toast" id="toast"></div>
+
+<!-- TOP NAV -->
+<nav class="topnav">
+  <div class="nav-brand">
+    🌿 <div class="nav-brand-wrap">
+      <span style="font-family:&#39;Fraunces&#39;,serif;font-style:italic;font-weight:700;color:var(--verdeD)">FisioCRM</span>
+      <span class="brand-sub">Italia</span>
+    </div>
+  </div>
+  <div class="nav-tabs" id="nav-tabs"><div class="nav-tab " onclick="irA(&#39;dashboard&#39;)">
+      ✦ Dashboard
+    </div><div class="nav-tab " onclick="irA(&#39;calendario&#39;)">
+      📅 Calendario<span class="tab-badge">2</span>
+    </div><div class="nav-tab " onclick="irA(&#39;todos&#39;)">
+      👥 Pazienti<span class="tab-badge">5</span>
+    </div><div class="nav-tab " onclick="irA(&#39;contabilidad&#39;)">
+      💶 Contabilità
+    </div><div class="nav-tab active" onclick="irA(&#39;calculadora&#39;)">
+      🧮 Calcolatrice
+    </div></div>
+  <div class="nav-right" id="nav-right">
+    <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted);background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:6px 12px;cursor:pointer" onclick="irA(&#39;calendario&#39;)" title="Appuntamenti oggi">
+      <span id="nav-citas-hoy-label"><span style="font-size:14px">📅</span> <strong style="color:var(--text)">Gio 21 Mag</strong> <span style="background:var(--verde);color:#fff;border-radius:10px;padding:1px 6px;font-size:11px;font-weight:700;margin-left:4px">2 visite</span></span>
+    </div>
+    <button class="btn btn-secondary btn-icon" onclick="toggleDark()" title="Modalità scura" id="btn-dark">☀️</button>
+    <button class="btn btn-secondary btn-sm" onclick="exportarBackup()" title="Backup dati">💾 Backup</button>
+    <button class="btn btn-primary" id="btn-nuevo-paciente" onclick="abrirNuovoPaziente()" style="display: inline-flex;">+ Nuovo Paziente</button>
+  </div>
+</nav>
+
+<div class="main">
+  <div class="container" id="content">
+  <h2 style="font-size:22px;font-weight:700;margin-bottom:20px;font-family:&#39;Fraunces&#39;,serif">🧮 Calcolatrice Fiscale</h2>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
+    <div class="calc-hero" id="calc-hero-box">
+      <div class="calc-hero-title">Quanto ti rimane?</div>
+      <div class="calc-amount-display" id="calc-display-final">47.48€</div>
+      <div class="calc-amount-sub" id="calc-display-sub">su 100.00€ lordi (47.5% rimane a te)</div>
+
+      <div class="calc-metodi">
+        
+          <div class="calc-metodo-btn " id="cbtn-Contanti" onclick="calcSelMetodo(&#39;Contanti&#39;)">
+            <span class="cmi">💵</span>Contanti
+          </div>
+        
+          <div class="calc-metodo-btn " id="cbtn-Bonifico" onclick="calcSelMetodo(&#39;Bonifico&#39;)">
+            <span class="cmi">🏦</span>Bonifico
+          </div>
+        
+          <div class="calc-metodo-btn active" id="cbtn-Carta" onclick="calcSelMetodo(&#39;Carta&#39;)">
+            <span class="cmi">💳</span>Carta
+          </div>
+        
+          <div class="calc-metodo-btn " id="cbtn-Satispay" onclick="calcSelMetodo(&#39;Satispay&#39;)">
+            <span class="cmi">📱</span>Satispay
+          </div>
+        
+      </div>
+
+      <div style="margin-bottom:16px;position:relative;z-index:1">
+        <label style="color:rgba(255,255,255,0.6);font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;display:block;margin-bottom:6px">Studio / Luogo</label>
+        <select id="calc-lugar-sel" onchange="calcSelLugar(this.value)" style="width:100%;padding:8px 12px;border-radius:8px;border:1.5px solid rgba(255,255,255,0.25);background:rgba(255,255,255,0.1);color:#fff;font-size:13px;font-family:inherit">
+          <option value="Studio A" selected="">Studio A (base)</option>
+          <option value="Studio B">Studio B (+10€ affitto)</option>
+          <option value="Domicilio">Domicilio (+5€)</option>
+        </select>
+      </div>
+
+      <div class="calc-input-wrap">
+        <input class="calc-euro-input" type="number" id="calc-input-main" placeholder="0.00 €" step="0.01" value="" oninput="calcUpdate(this.value)">
+      </div>
+
+      <div class="calc-breakdown" id="calc-breakdown-box">
+    <div class="calc-breakdown-row"><span class="cb-label">💶 Importo lordo</span><span class="cb-val">100.00€</span></div>
+    <div class="calc-breakdown-row"><span class="cb-label">💳 Commissione (1.95%)</span><span class="cb-val cb-neg">-1.95€</span></div>
+    
+    <div class="calc-breakdown-row"><span class="cb-label">🏢 Affitto studio (25%)</span><span class="cb-val cb-neg">-25.00€</span></div>
+    <div class="calc-breakdown-row"><span class="cb-label">📊 Base imponibile</span><span class="cb-val">73.05€</span></div>
+    <div class="calc-breakdown-row"><span class="cb-label">🏛 IVA (35%)</span><span class="cb-val cb-neg">-25.57€</span></div>
+    <div class="calc-breakdown-row total-row"><span>✅ Rimane a te</span><span class="cb-final">47.48€</span></div></div>
+    </div>
+
+    <div>
+      <div class="card" style="margin-bottom:16px">
+        <div class="card-title">📊 Dettaglio visivo</div>
+        <div id="calc-visual-box">
+      <div style="display:flex;justify-content:space-between;margin-bottom:6px;font-size:12px">
+        <span style="color:var(--ok);font-weight:700">Ricevi il 47.5% del lordo</span>
+        <span style="color:var(--muted)">Carta</span>
+      </div>
+      <div style="background:var(--border);border-radius:8px;height:32px;overflow:hidden;display:flex">
+        <div style="width:47.5%;background:var(--ok);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#fff">47%</div>
+        <div style="width:1.9%;background:#A78BFA" title="Commissione"></div>
+        <div style="width:25.0%;background:#FCA5A5" title="Affitto"></div>
+        <div style="width:25.6%;background:#C084FC" title="IVA"></div>
+      </div>
+      <div style="display:flex;gap:10px;margin-top:8px;font-size:11px;flex-wrap:wrap">
+        <span style="display:flex;align-items:center;gap:4px"><span style="width:8px;height:8px;background:var(--ok);border-radius:2px;display:inline-block"></span>Tuo 47%</span>
+        <span style="display:flex;align-items:center;gap:4px"><span style="width:8px;height:8px;background:#A78BFA;border-radius:2px;display:inline-block"></span>Comm. 1.95%</span>
+        <span style="display:flex;align-items:center;gap:4px"><span style="width:8px;height:8px;background:#FCA5A5;border-radius:2px;display:inline-block"></span>Affitto 25%</span>
+        <span style="display:flex;align-items:center;gap:4px"><span style="width:8px;height:8px;background:#C084FC;border-radius:2px;display:inline-block"></span>IVA 35%</span>
+      </div></div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">💡 Confronto rapido <span style="font-size:11px;font-weight:400;color:var(--muted)">per importo</span></div>
+        <div style="overflow-x:auto">
+          <table style="width:100%;font-size:12px" id="calc-compare-table">
+            <thead><tr>
+              <th style="text-align:left;padding:6px 8px;color:var(--muted);font-weight:600;border-bottom:1px solid var(--border)">Lordo</th>
+              <th style="text-align:right;padding:6px 8px;color:var(--ok);font-weight:600;border-bottom:1px solid var(--border)">💵 Contanti</th>
+              <th style="text-align:right;padding:6px 8px;color:var(--verde);font-weight:600;border-bottom:1px solid var(--border)">💳 Carta/Bonifico</th>
+            </tr></thead>
+            <tbody id="calc-compare-body"><tr style="" onclick="calcUpdate(40)">
+      <td style="padding:8px;font-weight:500;border-bottom:1px solid var(--border);cursor:pointer">40€</td>
+      <td style="padding:8px;text-align:right;font-weight:700;color:var(--ok);border-bottom:1px solid var(--border)">30.00€</td>
+      <td style="padding:8px;text-align:right;font-weight:600;color:var(--verde);border-bottom:1px solid var(--border)">18.99€</td>
+    </tr><tr style="" onclick="calcUpdate(50)">
+      <td style="padding:8px;font-weight:500;border-bottom:1px solid var(--border);cursor:pointer">50€</td>
+      <td style="padding:8px;text-align:right;font-weight:700;color:var(--ok);border-bottom:1px solid var(--border)">37.50€</td>
+      <td style="padding:8px;text-align:right;font-weight:600;color:var(--verde);border-bottom:1px solid var(--border)">23.74€</td>
+    </tr><tr style="" onclick="calcUpdate(60)">
+      <td style="padding:8px;font-weight:500;border-bottom:1px solid var(--border);cursor:pointer">60€</td>
+      <td style="padding:8px;text-align:right;font-weight:700;color:var(--ok);border-bottom:1px solid var(--border)">45.00€</td>
+      <td style="padding:8px;text-align:right;font-weight:600;color:var(--verde);border-bottom:1px solid var(--border)">28.49€</td>
+    </tr><tr style="" onclick="calcUpdate(75)">
+      <td style="padding:8px;font-weight:500;border-bottom:1px solid var(--border);cursor:pointer">75€</td>
+      <td style="padding:8px;text-align:right;font-weight:700;color:var(--ok);border-bottom:1px solid var(--border)">56.25€</td>
+      <td style="padding:8px;text-align:right;font-weight:600;color:var(--verde);border-bottom:1px solid var(--border)">35.61€</td>
+    </tr><tr style="" onclick="calcUpdate(80)">
+      <td style="padding:8px;font-weight:500;border-bottom:1px solid var(--border);cursor:pointer">80€</td>
+      <td style="padding:8px;text-align:right;font-weight:700;color:var(--ok);border-bottom:1px solid var(--border)">60.00€</td>
+      <td style="padding:8px;text-align:right;font-weight:600;color:var(--verde);border-bottom:1px solid var(--border)">37.99€</td>
+    </tr><tr style="background:var(--verdeL);" onclick="calcUpdate(100)">
+      <td style="padding:8px;font-weight:700;border-bottom:1px solid var(--border);cursor:pointer">100€</td>
+      <td style="padding:8px;text-align:right;font-weight:700;color:var(--ok);border-bottom:1px solid var(--border)">75.00€</td>
+      <td style="padding:8px;text-align:right;font-weight:600;color:var(--verde);border-bottom:1px solid var(--border)">47.48€</td>
+    </tr></tbody>
+          </table>
+        </div>
+        <div style="font-size:11px;color:var(--muted);margin-top:8px">* Carta include commissione 1.95% • IVA 35% • Affitto 25%</div>
+      </div>
+    </div>
+  </div></div>
+</div>
+
+<!-- MODAL -->
+<div class="modal-bg" id="modal" onclick="if(event.target===this)cerrarModal()">
+  <div class="modal-box">
+    <div class="modal-head">
+      <div class="modal-title" id="modal-title"></div>
+      <button class="btn btn-secondary btn-sm" onclick="cerrarModal()">✕</button>
+    </div>
+    <div class="modal-body" id="modal-body"></div>
+    <div class="modal-foot" id="modal-foot"></div>
+  </div>
+</div>
+
+<script>
+const TABS = [
+  {id:'dashboard', icon:'✦', label:'Dashboard'},
+  {id:'calendario', icon:'📅', label:'Calendario'},
+  {id:'todos', icon:'👥', label:'Pazienti'},
+  {id:'contabilidad', icon:'💶', label:'Contabilità'},
+  {id:'calculadora', icon:'🧮', label:'Calcolatrice'},
+];
+
+const ZONAS = ["Cervicale","Dorsale","Lombare","Spalla","Gomito/Mano","Anca","Ginocchio","Caviglia/Piede","Pavimento Pelvico","ATM"];
+const HORAS_TRABAJO = ["08:00","09:00","10:00","11:00","12:00","13:00","16:00","17:00","18:00","19:00","20:00"];
+const MESI = ["Gennaio","Febbraio","Marzo","Aprile","Maggio","Giugno","Luglio","Agosto","Settembre","Ottobre","Novembre","Dicembre"];
+const MESI_BREVE = ["Gen","Feb","Mar","Apr","Mag","Giu","Lug","Ago","Set","Ott","Nov","Dic"];
+const GIORNI = ["Dom","Lun","Mar","Mer","Gio","Ven","Sab"];
+
+// Costanti fiscali unificate
+const IVA_RATE = 0.35;           // IVA 35%
+const CARTA_COM = 0.0195;        // Commissione carta 1.95%
+const LINK_COM = 0.0195;         // Commissione link pagamento 1.95%
+const LINK_FISSO = 0.25;         // Fisso link pagamento
+const AFFITTO_RATE = 0.25;       // Affitto studio 25%
+const STUDIO_B_EXTRA = 10;       // Extra Studio B
+const DOMICILIO_EXTRA = 5;       // Extra domicilio
+
+let state = {
+  pagina:'dashboard',
+  pacientes:[],
+  busqueda:'',
+  filtroEstado:'Tutti',
+  verPacienteId:null,
+  p_tab:'istoria',
+  cal:{year:new Date().getFullYear(), month:new Date().getMonth(), selectedDate:null},
+  calcBruto:'',
+  calcMetodo:'Carta',
+  calcLugar:'Studio A',
+  horariosConfig:{inicio:'09:00', fin:'20:00', duracion:60, diasActivos:[1,2,3,4,5]},
+  stats:{},
+  darkMode: false,
+  contab_filtroMes: '',
+  contab_filtroMetodo: '',
+  contab_filtroPaciente: '',
+};
+
+// ---- INIT ----
+function init(){
+  const dark = localStorage.getItem('fisiocrm_dark');
+  if(dark==='1'){ state.darkMode=true; document.body.classList.add('dark'); document.getElementById('btn-dark').textContent='☀️'; }
+  const res = localStorage.getItem('fisiocrm_italia_v2');
+  if(res){ try{ state.pacientes = JSON.parse(res); fixPacientes(); } catch(e){ state.pacientes = getMock(); } }
+  else {
+    // Try old key migration
+    const old = localStorage.getItem('fisiocrm_italia');
+    if(old){ try{ state.pacientes = JSON.parse(old); fixPacientes(); guardar(); } catch(e){ state.pacientes = getMock(); guardar(); } }
+    else { state.pacientes = getMock(); guardar(); }
+  }
+  document.addEventListener('keydown', e=>{
+    if(e.key==='Escape') cerrarModal();
+    if(e.key==='n'&&!e.ctrlKey&&!e.metaKey&&document.activeElement.tagName!=='INPUT'&&document.activeElement.tagName!=='TEXTAREA') abrirNuovoPaziente();
+  });
+  irA('dashboard');
+}
+
+function fixPacientes(){
+  const hoy = hoyStr();
+  state.pacientes.forEach(p=>{
+    if(!p.avatarColor) p.avatarColor = avatarColor(p.nombre);
+    if(!p.citas) p.citas = [];
+    if(!p.dolorHistorial) p.dolorHistorial = [];
+    if(!p.notas_dia) p.notas_dia = {};
+    // Aggiorna proxima_cita automaticamente (pulizia date passate)
+    if(p.proxima_cita && p.proxima_cita < hoy){
+      const futuras = (p.citas||[]).filter(c=>c.fecha>=hoy).sort((a,b)=>a.fecha.localeCompare(b.fecha));
+      p.proxima_cita = futuras.length ? futuras[0].fecha : '';
+      if(p.proxima_cita) p.hora_cita = futuras[0].hora||'';
+    }
+    (p.pagos||[]).forEach(pg=>{ if(pg.netoPre===undefined) pg.netoPre = calcNeto(pg.monto,pg.metodo,pg.lugar).neto; });
+  });
+}
+
+function guardar(){
+  localStorage.setItem('fisiocrm_italia_v2', JSON.stringify(state.pacientes));
+  checkStorageWarning();
+}
+
+function checkStorageWarning(){
+  try{
+    const used = new Blob([localStorage.getItem('fisiocrm_italia_v2')||'']).size;
+    const limit = 5*1024*1024;
+    if(used > limit*0.8) toast('⚠️ Spazio dati quasi pieno! Esporta un backup.',4000);
+  }catch(e){}
+}
+
+function toast(msg, dur=2500){
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'), dur);
+}
+
+function toggleDark(){
+  state.darkMode = !state.darkMode;
+  document.body.classList.toggle('dark', state.darkMode);
+  document.getElementById('btn-dark').textContent = state.darkMode ? '☀️' : '🌙';
+  localStorage.setItem('fisiocrm_dark', state.darkMode?'1':'0');
+}
+
+function avatarColor(n){
+  let h=0; for(let i=0;i<(n||'P').length;i++) h=(n.charCodeAt(i)+((h<<5)-h));
+  return `hsl(${Math.abs(h)%360},50%,38%)`;
+}
+
+function hoyStr(){ return new Date().toISOString().split('T')[0]; }
+function esc(s){ return (s||'').toString().replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function debounce(fn,d){ let t; return (...a)=>{ clearTimeout(t); t=setTimeout(()=>fn(...a),d); }; }
+const dSearch = debounce((v)=>{ state.busqueda=v; render(); }, 150);
+function globalSearch(v){ state.busqueda=v; if(state.pagina!=='todos'&&v){ irA('todos'); } else render(); }
+
+// ---- CALCOLO NETTO UNIFICATO ----
+function calcNeto(monto, metodo, lugar){
+  const m = Number(monto)||0;
+  let com = 0;
+  if(metodo==='Carta') com = m * CARTA_COM;
+  else if(metodo==='Link pagamento') com = (m * LINK_COM) + LINK_FISSO;
+  let fijos = 0;
+  if(lugar==='Studio B') fijos = STUDIO_B_EXTRA;
+  else if(lugar==='Domicilio') fijos = DOMICILIO_EXTRA;
+  const affitto = m * AFFITTO_RATE;
+  const esEfectivo = (metodo==='Contanti');
+  const base = Math.max(0, m - com - fijos - affitto);
+  const iva = esEfectivo ? 0 : base * IVA_RATE;
+  const neto = base - iva;
+  return {bruto:m, com, fijos, affitto, base, iva, esEfectivo, neto};
+}
+
+// ---- NAV ----
+function renderNav(){
+  const s = state.stats;
+  document.getElementById('nav-tabs').innerHTML = TABS.map(t=>{
+    const c = t.id==='todos' ? s.total : t.id==='calendario' ? citasHoy() : '';
+    return `<div class="nav-tab ${state.pagina===t.id||isSubPage(t.id)?'active':''}" onclick="irA('${t.id}')">
+      ${t.icon} ${t.label}${c?`<span class="tab-badge">${c}</span>`:''}
+    </div>`;
+  }).join('');
+  const btnNP = document.getElementById('btn-nuevo-paciente');
+  if(btnNP) btnNP.style.display = (state.pagina==='paciente-ver') ? 'none' : 'inline-flex';
+  const lbl = document.getElementById('nav-citas-hoy-label');
+  if(lbl){
+    const n = citasHoy();
+    const hoy = new Date();
+    lbl.innerHTML = `<span style="font-size:14px">📅</span> <strong style="color:var(--text)">${GIORNI[hoy.getDay()]} ${hoy.getDate()} ${MESI_BREVE[hoy.getMonth()]}</strong>${n?` <span style="background:var(--verde);color:#fff;border-radius:10px;padding:1px 6px;font-size:11px;font-weight:700;margin-left:4px">${n} visite</span>`:''}`;
+  }
+}
+
+function isSubPage(id){ return id==='todos' && state.pagina==='paciente-ver'; }
+
+function citasHoy(){
+  const h=hoyStr();
+  const citasSet = new Set();
+  state.pacientes.forEach(p=>{
+    (p.citas||[]).forEach(c=>{ if(c.fecha===h) citasSet.add(p.id+'_'+c.id); });
+    if(p.proxima_cita===h && !(p.citas||[]).some(c=>c.fecha===h)) citasSet.add(p.id+'_prox');
+  });
+  return citasSet.size||'';
+}
+
+function irA(pag, id=null){
+  state.pagina=pag;
+  if(id) state.verPacienteId=id;
+  window.scrollTo({top:0,behavior:'smooth'});
+  render();
+}
+
+// ---- RENDER ----
+function render(){
+  calcStats();
+  renderNav();
+  const c = document.getElementById('content');
+  const p = state.pagina;
+  if(p==='dashboard') c.innerHTML = viewDashboard();
+  else if(p==='calendario') c.innerHTML = viewCalendario();
+  else if(['todos','activos','primera','pausa','alta'].includes(p)) c.innerHTML = viewLista();
+  else if(p==='paciente-ver') c.innerHTML = viewDetalle();
+  else if(p==='contabilidad') c.innerHTML = viewContabilidad();
+  else if(p==='calculadora') c.innerHTML = viewCalcolatrice();
+}
+
+// ---- STATS ----
+function calcStats(){
+  let bruto=0,neto=0,pend=0,pendN=0,act=0,pri=0,pau=0,alt=0;
+  state.pacientes.forEach(p=>{
+    if(p.estado==='Attivo') act++;
+    else if(p.estado==='Prima visita') pri++;
+    else if(p.estado==='In pausa') pau++;
+    else if(p.estado==='Dimesso') alt++;
+    (p.pagos||[]).forEach(pg=>{
+      const m=Number(pg.monto)||0;
+      const n=pg.netoPre!==undefined?pg.netoPre:calcNeto(pg.monto,pg.metodo,pg.lugar).neto;
+      if(pg.pagado){bruto+=m;neto+=n;}else{pend+=m;pendN+=n;}
+    });
+  });
+  state.stats={total:state.pacientes.length,activos:act,primera:pri,pausa:pau,alta:alt,bruto,neto,pend,pendN};
+}
+
+// ---- DASHBOARD ----
+function viewDashboard(){
+  const s=state.stats;
+  const prox=state.pacientes.filter(p=>p.proxima_cita).sort((a,b)=>new Date(a.proxima_cita)-new Date(b.proxima_cita)).slice(0,6);
+  const hoy=hoyStr();
+
+  // Pazienti attivi senza visita programmata da 14+ giorni
+  const soglia=new Date(); soglia.setDate(soglia.getDate()-14);
+  const senzaCita=state.pacientes.filter(p=>p.estado==='Attivo'&&!p.proxima_cita);
+
+  const now=new Date();
+  const monthlyData=[];
+  for(let i=5;i>=0;i--){
+    const d=new Date(now.getFullYear(), now.getMonth()-i, 1);
+    const ms=`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}`;
+    let total=0;
+    state.pacientes.forEach(p=>(p.pagos||[]).forEach(pg=>{ if(pg.pagado&&(pg.fecha||'').startsWith(ms)) total+=Number(pg.monto)||0; }));
+    monthlyData.push({label:MESI_BREVE[d.getMonth()],total,ms});
+  }
+  const maxM=Math.max(...monthlyData.map(m=>m.total),1);
+
+  const mesStr=`${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}`;
+  let ingresosMes=0, sesionesM=0, nuevosPacs=0;
+  state.pacientes.forEach(p=>{
+    (p.pagos||[]).forEach(pg=>{ if(pg.pagado&&(pg.fecha||'').startsWith(mesStr)) ingresosMes+=Number(pg.monto)||0; });
+    (p.citas||[]).forEach(c=>{ if((c.fecha||'').startsWith(mesStr)) sesionesM++; });
+    if((p.fecha_inicio||'').startsWith(mesStr)) nuevosPacs++;
+  });
+
+  // Storage info
+  const storageStr = localStorage.getItem('fisiocrm_italia_v2')||'';
+  const usedKB = Math.round(new Blob([storageStr]).size/1024);
+  const pctStorage = Math.min(100,(usedKB/5120)*100).toFixed(0);
+
+  return `
+  <div class="dashboard-header">
+    <div class="dashboard-title">Buongiorno 👋</div>
+    <div class="dashboard-sub">${GIORNI[now.getDay()]}, ${now.getDate()} ${MESI[now.getMonth()]} ${now.getFullYear()} — Ecco il riepilogo del tuo studio</div>
+  </div>
+
+  ${senzaCita.length>0?`<div class="alert-banner">⚠️ <strong>${senzaCita.length} pazienti attivi</strong> senza visita programmata: ${senzaCita.slice(0,3).map(p=>esc(p.nombre.split(' ')[0])).join(', ')}${senzaCita.length>3?` e altri ${senzaCita.length-3}`:''}. <button class="btn btn-warn btn-sm" style="margin-left:auto" onclick="irA('activos')">Vedi →</button></div>`:''}
+
+  <div class="stats-grid">
+    <div class="stat-card" onclick="irA('activos')" style="border-top:3px solid var(--verde)">
+      <div class="stat-icon">🟢</div><div class="stat-label">Pazienti Attivi</div>
+      <div class="stat-val" style="color:var(--verde)">${s.activos}</div>
+      <div class="stat-sub">su ${s.total} registrati</div>
+    </div>
+    <div class="stat-card" onclick="irA('primera')" style="border-top:3px solid var(--purple)">
+      <div class="stat-icon">✨</div><div class="stat-label">Prime Visite</div>
+      <div class="stat-val" style="color:var(--purple)">${s.primera}</div>
+      <div class="stat-sub">da valutare</div>
+    </div>
+    <div class="stat-card" onclick="irA('contabilidad')" style="border-top:3px solid var(--ok)">
+      <div class="stat-icon">💶</div><div class="stat-label">Netto Incassato</div>
+      <div class="stat-val" style="color:var(--ok)">${s.neto.toFixed(0)}€</div>
+      <div class="stat-sub">lordo: ${s.bruto.toFixed(0)}€</div>
+    </div>
+    <div class="stat-card" onclick="irA('contabilidad')" style="border-top:3px solid var(--warn)">
+      <div class="stat-icon">⏳</div><div class="stat-label">Da Incassare</div>
+      <div class="stat-val" style="color:var(--warn)">${s.pend.toFixed(0)}€</div>
+      <div class="stat-sub">netto est: ${s.pendN.toFixed(0)}€</div>
+    </div>
+    <div class="stat-card" onclick="irA('calendario')" style="border-top:3px solid #6366F1">
+      <div class="stat-icon">📅</div><div class="stat-label">Visite Oggi</div>
+      <div class="stat-val" style="color:#6366F1">${citasHoy()||0}</div>
+      <div class="stat-sub">vedi calendario</div>
+    </div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:2fr 1fr;gap:20px;margin-bottom:20px">
+    <div class="card" style="margin-bottom:0">
+      <div class="card-title">📆 Prossime Visite Programmate
+        <button class="btn btn-secondary btn-sm" onclick="irA('calendario')">Calendario completo</button>
+      </div>
+      ${prox.length===0?'<p style="color:var(--muted);font-size:13px;text-align:center;padding:20px 0">Nessuna visita programmata.</p>':`
+      <div class="table-w">
+        <table>
+          <thead><tr><th>Paziente</th><th>Data</th><th>Stato</th><th></th></tr></thead>
+          <tbody>
+            ${prox.map(p=>`<tr>
+              <td><div class="p-meta">
+                <div class="avatar" style="background:${p.avatarColor}">${esc(p.nombre[0])}</div>
+                <div><div class="p-name" onclick="irA('paciente-ver',${p.id})">${esc(p.nombre)}</div>
+                <div class="p-sub">${esc(p.telefono)}</div></div>
+              </div></td>
+              <td><strong style="color:${p.proxima_cita===hoy?'var(--danger)':'var(--verde)'}">${p.proxima_cita===hoy?'🔴 OGGI':esc(p.proxima_cita)}</strong></td>
+              <td>${badgeEstado(p.estado)}</td>
+              <td><button class="btn btn-secondary btn-sm" onclick="irA('paciente-ver',${p.id})">Apri</button></td>
+            </tr>`).join('')}
+          </tbody>
+        </table>
+      </div>`}
+    </div>
+    <div style="display:flex;flex-direction:column;gap:16px">
+      <div class="income-summary">
+        <div class="income-month-label">${MESI[now.getMonth()]} ${now.getFullYear()}</div>
+        <div class="income-month-amount">${ingresosMes.toFixed(0)}€</div>
+        <div class="income-month-sub">incassato questo mese</div>
+        <div class="income-pills">
+          <div class="income-pill"><strong>${sesionesM}</strong>sedute</div>
+          <div class="income-pill"><strong>${nuevosPacs}</strong>nuovi paz.</div>
+          <div class="income-pill"><strong>${s.activos}</strong>attivi</div>
+        </div>
+        <div style="margin-top:16px">
+          <div style="font-size:11px;opacity:0.6;margin-bottom:6px;letter-spacing:0.5px;text-transform:uppercase">Ultimi 6 mesi</div>
+          <div class="month-bar-container">
+            ${monthlyData.map((m)=>{
+              const h=Math.max(8,(m.total/maxM)*70);
+              const isThis=m.ms===mesStr;
+              return `<div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:3px">
+                <div style="font-size:10px;opacity:0.7">${m.total>0?m.total.toFixed(0)+'€':''}</div>
+                <div style="width:100%;height:${h}px;background:${isThis?'rgba(255,255,255,0.9)':'rgba(255,255,255,0.3)'};border-radius:4px 4px 0 0;transition:height 0.5s"></div>
+                <div style="font-size:10px;opacity:${isThis?'1':'0.6'};font-weight:${isThis?'700':'400'}">${m.label}</div>
+              </div>`;
+            }).join('')}
+          </div>
+        </div>
+        <button class="btn btn-sm" style="background:rgba(255,255,255,0.15);color:#fff;margin-top:14px;width:100%;justify-content:center" onclick="irA('contabilidad')">📊 Contabilità completa</button>
+      </div>
+    </div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
+    <div class="card" style="margin-bottom:0">
+      <div class="card-title">📊 Distribuzione Pazienti</div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        ${[['Attivo','var(--verde)',s.activos],['Prima visita','var(--purple)',s.primera],['In pausa','var(--warn)',s.pausa],['Dimesso','var(--mutedL)',s.alta]].map(([l,c,v])=>`
+          <div style="display:flex;align-items:center;gap:10px">
+            <div style="width:10px;height:10px;border-radius:3px;background:${c};flex-shrink:0"></div>
+            <span style="font-size:13px;flex:1;color:var(--muted)">${l}</span>
+            <div style="flex:2;background:var(--border);border-radius:3px;height:6px;overflow:hidden"><div style="width:${s.total>0?((v/s.total)*100).toFixed(0):0}%;height:100%;background:${c};border-radius:3px"></div></div>
+            <strong style="font-size:13px;width:24px;text-align:right">${v}</strong>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+    <div class="card" style="margin-bottom:0">
+      <div class="card-title">🧮 Riepilogo IVA</div>
+      ${calcFiscalHTML(s.neto,s.bruto)}
+      <div style="margin-top:12px;padding-top:10px;border-top:1px solid var(--border)">
+        <div style="font-size:11px;color:var(--muted);margin-bottom:4px">💾 Spazio dati usato: ${usedKB}KB / 5MB</div>
+        <div class="storage-bar"><div class="storage-fill" style="width:${pctStorage}%;background:${pctStorage>80?'var(--danger)':pctStorage>60?'var(--warn)':'var(--verde)'}"></div></div>
+      </div>
+    </div>
+  </div>`;
+}
+
+// ---- CALENDARIO ----
+function viewCalendario(){
+  const {year,month,selectedDate} = state.cal;
+  const hoy = hoyStr();
+  const primerDia = new Date(year,month,1);
+  const diasMes = new Date(year,month+1,0).getDate();
+  let startDay = primerDia.getDay(); if(startDay===0) startDay=7;
+
+  // Raccoglie SOLO le citas (array), senza duplicare da proxima_cita
+  const citasMes = {};
+  state.pacientes.forEach(p=>{
+    (p.citas||[]).forEach(c=>{
+      const d=c.fecha.split('-');
+      if(parseInt(d[0])===year && parseInt(d[1])-1===month){
+        if(!citasMes[c.fecha]) citasMes[c.fecha]=[];
+        const isFutura = c.fecha >= hoy;
+        citasMes[c.fecha].push({
+          paciente:p.nombre, pacienteId:p.id,
+          hora:c.hora||'', zona:c.zona||'',
+          tipo: isFutura ? 'programmata' : 'svolta',
+          nota:c.nota||''
+        });
+      }
+    });
+    // proxima_cita solo se non è già in citas
+    if(p.proxima_cita){
+      const d=p.proxima_cita.split('-');
+      if(parseInt(d[0])===year && parseInt(d[1])-1===month){
+        const hasCita = (p.citas||[]).some(c=>c.fecha===p.proxima_cita);
+        if(!hasCita){
+          if(!citasMes[p.proxima_cita]) citasMes[p.proxima_cita]=[];
+          citasMes[p.proxima_cita].push({
+            paciente:p.nombre, pacienteId:p.id,
+            hora:p.hora_cita||'', zona:(p.zonas||[]).join(', '),
+            tipo:'programmata', nota:''
+          });
+        }
+      }
+    }
+  });
+
+  let cells = '';
+  for(let i=1;i<startDay;i++){
+    const prevDay=new Date(year,month,1-i);
+    cells=`<div class="cal-cell other-month">${prevDay.getDate()}</div>`+cells;
+  }
+  for(let d=1;d<=diasMes;d++){
+    const dateStr=`${year}-${String(month+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+    const citas=citasMes[dateStr]||[];
+    const esHoy=dateStr===hoy;
+    const esSel=dateStr===selectedDate;
+    const hayCitas=citas.length>0;
+    const esPasado=dateStr<hoy&&hayCitas;
+    let cls='cal-cell';
+    if(esHoy) cls+=' today';
+    else if(esSel) cls+=' selected';
+    else if(esPasado) cls+=' worked';
+    else if(hayCitas) cls+=' has-citas';
+    // Punti colorati: blu=programmata, verde=svolta
+    const dots=citas.map(c=>`<div class="cal-dot" style="background:${c.tipo==='programmata'?'#3B82F6':'var(--ok)'}"></div>`).join('');
+    cells+=`<div class="${cls}" onclick="selDia('${dateStr}')"><span>${d}</span>${hayCitas?`<div class="cal-dots">${dots}</div>`:''}</div>`;
+  }
+
+  const sel = selectedDate || hoy;
+  const citasSel = (citasMes[sel]||[]).sort((a,b)=>(a.hora||'').localeCompare(b.hora||''));
+  const esPasadoSel = sel < hoy;
+  const esHoySel = sel === hoy;
+
+  // Formato data leggibile
+  const selDate = new Date(sel+'T12:00:00');
+  const selLabel = `${GIORNI[selDate.getDay()]} ${selDate.getDate()} ${MESI[selDate.getMonth()]} ${selDate.getFullYear()}`;
+
+  let panelHTML = `<div class="cal-panel-date">${esHoySel?'📅 Oggi — ':''}<span style="color:var(--verde)">${selLabel}</span></div>`;
+
+  if(citasSel.length>0){
+    panelHTML+=`<div style="font-size:12px;font-weight:700;color:var(--muted);margin-bottom:8px;text-transform:uppercase;letter-spacing:0.5px">Visite del giorno (${citasSel.length})</div>`;
+    citasSel.forEach(c=>{
+      const tipoClass = c.tipo;
+      const tipoLabel = c.tipo==='svolta' ? '✅ Svolta' : '🔵 Programmata';
+      panelHTML+=`<div class="cita-item ${tipoClass}" onclick="irA('paciente-ver',${c.pacienteId})">
+        <div class="cita-hora ${tipoClass}">${c.hora||'Orario n/d'} — ${tipoLabel}</div>
+        <div class="cita-pac">${esc(c.paciente)}</div>
+        ${c.zona?`<div class="cita-sub">📍 ${esc(c.zona)}</div>`:''}
+        ${c.nota?`<div class="cita-sub" style="margin-top:4px;font-style:italic">💬 ${esc(c.nota)}</div>`:''}
+        <div style="font-size:11px;margin-top:5px;color:var(--muted)">Tocca per aprire la scheda →</div>
+      </div>`;
+    });
+  } else {
+    panelHTML+=`<div class="cal-panel-empty">📋 Nessuna visita in questo giorno</div>`;
+  }
+
+  if(!esPasadoSel){
+    const horasOcupadas=citasSel.map(c=>c.hora).filter(Boolean);
+    const horasLibres=HORAS_TRABAJO.filter(h=>!horasOcupadas.includes(h));
+    if(horasLibres.length>0){
+      panelHTML+=`<div style="font-size:12px;font-weight:700;color:var(--muted);margin:10px 0 6px;text-transform:uppercase">⚡ Orari disponibili</div>
+      <div class="time-slots">
+        ${horasLibres.map(h=>`<div class="free-slot"><span>🕐 ${h}</span><button class="btn btn-primary btn-sm" onclick="abrirNuevaCita('${sel}','${h}')">+ Visita</button></div>`).join('')}
+      </div>`;
+    }
+    panelHTML+=`<button class="btn btn-primary" style="width:100%;justify-content:center;margin-top:10px" onclick="abrirNuevaCita('${sel}','')">+ Nuova Visita</button>`;
+  } else {
+    panelHTML+=`<button class="btn btn-secondary" style="width:100%;justify-content:center;margin-top:10px" onclick="abrirNuevaCita('${sel}','')">+ Aggiungi seduta storica</button>`;
+  }
+
+  return `
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px">
+    <h2 style="font-size:20px;font-weight:800;font-family:'Fraunces',serif">Calendario Clinico</h2>
+    <div style="display:flex;gap:8px">
+      <button class="btn btn-secondary btn-sm" onclick="configurarHorario()">⚙ Configura Orario</button>
+    </div>
+  </div>
+  <div class="cal-wrap">
+    <div>
+      <div class="card" style="padding:20px">
+        <div class="cal-nav">
+          <button class="cal-nav-btn" onclick="calNav(-1)">‹</button>
+          <div class="cal-nav-title">${MESI[month]} ${year}</div>
+          <button class="cal-nav-btn" onclick="calNav(1)">›</button>
+        </div>
+        <div class="cal-header-days">
+          ${['Lu','Ma','Me','Gi','Ve','Sa','Do'].map(d=>`<div class="cal-day-name">${d}</div>`).join('')}
+        </div>
+        <div class="cal-grid">${cells}</div>
+        <div class="legend" style="margin-top:12px">
+          <div class="legend-item"><div class="legend-dot" style="background:#3B82F6"></div>Visita programmata</div>
+          <div class="legend-item"><div class="legend-dot" style="background:var(--ok)"></div>Seduta svolta</div>
+          <div class="legend-item"><div class="legend-dot" style="background:var(--bg)"></div>Nessuna visita</div>
+        </div>
+      </div>
+    </div>
+    <div class="card cal-panel" style="padding:20px;position:sticky;top:80px;align-self:start">
+      <div style="font-size:15px;font-weight:700;margin-bottom:14px;color:var(--verde)">${esHoySel?'📅 OGGI':'📋 Dettaglio giorno'}</div>
+      ${panelHTML}
+    </div>
+  </div>`;
+}
+
+function selDia(d){ state.cal.selectedDate=d; render(); }
+function calNav(dir){
+  state.cal.month+=dir;
+  if(state.cal.month<0){state.cal.month=11;state.cal.year--;}
+  if(state.cal.month>11){state.cal.month=0;state.cal.year++;}
+  render();
+}
+
+function abrirNuevaCita(fecha, hora){
+  const pacs = state.pacientes.filter(p=>p.estado!=='Dimesso');
+  const curP = state.verPacienteId ? state.pacientes.find(x=>x.id===state.verPacienteId) : null;
+  const html=`
+    <div class="form-grid">
+      <div class="form-group"><label>Paziente *</label>
+        <select id="nc-pac">
+          ${pacs.map(p=>`<option value="${p.id}" ${curP&&curP.id===p.id?'selected':''}>${esc(p.nombre)}</option>`).join('')}
+        </select>
+      </div>
+      <div class="form-group"><label>Zona trattamento</label>
+        <select id="nc-zona"><option value="">Seleziona zona</option>${ZONAS.map(z=>`<option>${z}</option>`).join('')}</select>
+      </div>
+    </div>
+    <div class="form-grid">
+      <div class="form-group"><label>Data</label><input type="date" id="nc-fecha" value="${fecha||hoyStr()}"></div>
+      <div class="form-group"><label>Orario</label><input type="time" id="nc-hora" value="${hora||'09:00'}"></div>
+    </div>
+    <div class="form-group"><label>Note seduta</label><textarea id="nc-nota" rows="3" placeholder="Osservazioni..."></textarea></div>`;
+  abrirModal('📅 Programma Visita', html, `
+    <button class="btn btn-secondary" onclick="cerrarModal()">Annulla</button>
+    <button class="btn btn-primary" onclick="guardarNuevaCita()">Salva</button>
+  `);
+}
+
+function guardarNuevaCita(){
+  const pacId=parseInt(document.getElementById('nc-pac').value);
+  const p=state.pacientes.find(x=>x.id===pacId); if(!p) return;
+  if(!p.citas) p.citas=[];
+  const fecha=document.getElementById('nc-fecha').value;
+  const hora=document.getElementById('nc-hora').value;
+  const zona=document.getElementById('nc-zona').value;
+  const nota=document.getElementById('nc-nota').value;
+  // Valida data
+  if(!fecha || isNaN(new Date(fecha).getTime())){ alert('Data non valida.'); return; }
+  p.citas.push({id:Date.now(),fecha,hora,zona,nota});
+  // Aggiorna sedute realizzate se visita passata
+  if(fecha < hoyStr()){
+    p.sesiones_realizadas = (p.sesiones_realizadas||0)+1;
+    if(p.sesiones_restantes>0) p.sesiones_restantes--;
+  }
+  // Aggiorna proxima_cita
+  aggiornaProssimaCita(p);
+  guardar(); cerrarModal(); render(); toast('✅ Visita salvata');
+}
+
+function aggiornaProssimaCita(p){
+  const hoy = hoyStr();
+  const future = (p.citas||[]).filter(c=>c.fecha>=hoy).sort((a,b)=>a.fecha.localeCompare(b.fecha));
+  if(future.length){
+    p.proxima_cita = future[0].fecha;
+    p.hora_cita = future[0].hora||'';
+  } else {
+    p.proxima_cita = '';
+    p.hora_cita = '';
+  }
+}
+
+function eliminarCita(pid,cid){
+  if(!confirm('Eliminare questa visita?')) return;
+  const p=state.pacientes.find(x=>x.id===pid); if(!p) return;
+  p.citas=(p.citas||[]).filter(c=>c.id!==cid);
+  aggiornaProssimaCita(p);
+  guardar(); render(); toast('Visita eliminata');
+}
+
+function configurarHorario(){
+  const cfg=state.horariosConfig;
+  const html=`
+    <div class="form-grid">
+      <div class="form-group"><label>Inizio giornata</label><input type="time" id="h-ini" value="${cfg.inicio}"></div>
+      <div class="form-group"><label>Fine giornata</label><input type="time" id="h-fin" value="${cfg.fin}"></div>
+    </div>
+    <div class="form-group" style="margin-bottom:14px"><label>Durata visita (minuti)</label>
+      <select id="h-dur">${[30,45,60,90].map(v=>`<option ${cfg.duracion===v?'selected':''}>${v}</option>`).join('')}</select>
+    </div>
+    <div class="form-group"><label>Giorni lavorativi</label>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px">
+        ${['Dom','Lun','Mar','Mer','Gio','Ven','Sab'].map((d,i)=>`
+          <label style="display:flex;align-items:center;gap:4px;text-transform:none;font-size:13px;letter-spacing:0;font-weight:500;cursor:pointer">
+            <input type="checkbox" id="dia-${i}" ${cfg.diasActivos.includes(i)?'checked':''} style="width:14px;height:14px"> ${d}
+          </label>
+        `).join('')}
+      </div>
+    </div>`;
+  abrirModal('⚙ Configura Orario', html, `
+    <button class="btn btn-secondary" onclick="cerrarModal()">Annulla</button>
+    <button class="btn btn-primary" onclick="guardarHorario()">Salva</button>
+  `);
+}
+
+function guardarHorario(){
+  state.horariosConfig.inicio=document.getElementById('h-ini').value;
+  state.horariosConfig.fin=document.getElementById('h-fin').value;
+  state.horariosConfig.duracion=parseInt(document.getElementById('h-dur').value);
+  state.horariosConfig.diasActivos=[0,1,2,3,4,5,6].filter(i=>document.getElementById(`dia-${i}`)?.checked);
+  cerrarModal(); render(); toast('✅ Orario aggiornato');
+}
+
+// ---- LISTA ----
+function viewLista(){
+  const fEst = state.filtroEstado;
+  let list = state.pacientes.filter(p=>{
+    const q=(state.busqueda||'').toLowerCase();
+    const match=!q||(p.nombre||'').toLowerCase().includes(q)||(p.telefono||'').includes(q)||(p.email||'').toLowerCase().includes(q)||((p.zonas||[]).some(z=>z.toLowerCase().includes(q)));
+    let stMatch=true;
+    if(fEst==='Attivo'&&p.estado!=='Attivo') stMatch=false;
+    else if(fEst==='Prima visita'&&p.estado!=='Prima visita') stMatch=false;
+    else if(fEst==='In pausa'&&p.estado!=='In pausa') stMatch=false;
+    else if(fEst==='Dimesso'&&p.estado!=='Dimesso') stMatch=false;
+    if(state.pagina==='activos'&&p.estado!=='Attivo') stMatch=false;
+    if(state.pagina==='primera'&&p.estado!=='Prima visita') stMatch=false;
+    if(state.pagina==='pausa'&&p.estado!=='In pausa') stMatch=false;
+    if(state.pagina==='alta'&&p.estado!=='Dimesso') stMatch=false;
+    return match&&stMatch;
+  }).sort((a,b)=>(a.nombre||'').localeCompare(b.nombre||''));
+
+  return `
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px">
+    <h2 style="font-size:20px;font-weight:800;font-family:'Fraunces',serif">Pazienti <span style="color:var(--muted);font-weight:400;font-size:14px;font-family:'DM Sans',sans-serif">${list.length} risultati</span></h2>
+  </div>
+  <div class="card">
+    <div class="search-row">
+      <input type="text" class="search-input" placeholder="🔍 Nome, telefono, email, zona..." value="${esc(state.busqueda)}" oninput="dSearch(this.value)">
+      <select onchange="state.filtroEstado=this.value;render()" style="min-width:160px">
+        <option value="Tutti" ${fEst==='Tutti'?'selected':''}>Tutti gli stati</option>
+        <option value="Attivo" ${fEst==='Attivo'?'selected':''}>Attivi</option>
+        <option value="Prima visita" ${fEst==='Prima visita'?'selected':''}>Prima visita</option>
+        <option value="In pausa" ${fEst==='In pausa'?'selected':''}>In pausa</option>
+        <option value="Dimesso" ${fEst==='Dimesso'?'selected':''}>Dimessi</option>
+      </select>
+    </div>
+    ${list.length===0?'<div style="text-align:center;padding:40px;color:var(--muted)">Nessun paziente trovato.</div>':`
+    <div class="table-w" style="margin-top:0">
+      <table>
+        <thead><tr><th>Paziente</th><th>Stato</th><th>Zone</th><th>Dolore</th><th>Sedute</th><th>Prossima visita</th><th></th></tr></thead>
+        <tbody>
+          ${list.map(p=>{
+            const hoy=hoyStr();
+            const esCitaHoy=p.proxima_cita===hoy;
+            const pct=p.dolor_inicial>0?Math.round((1-p.dolor_actual/p.dolor_inicial)*100):0;
+            return `<tr>
+              <td><div class="p-meta">
+                <div class="avatar" style="background:${p.avatarColor}">${esc(p.nombre[0])}</div>
+                <div><div class="p-name" onclick="irA('paciente-ver',${p.id})">${esc(p.nombre)}</div>
+                <div class="p-sub">${p.edad}a • ${esc(p.telefono)}</div></div>
+              </div></td>
+              <td>${badgeEstado(p.estado)}</td>
+              <td>${(p.zonas||[]).map(z=>`<span style="background:#E0F4EC;color:#005C44;font-size:11px;padding:2px 7px;border-radius:4px;display:inline-block;margin:1px;font-weight:500">${esc(z)}</span>`).join('')}</td>
+              <td>
+                <span style="font-size:12px;color:var(--muted)">${p.dolor_inicial}→${p.dolor_actual}</span>
+                <div class="pain-bar"><div class="pain-fill" style="width:${pct}%;background:${pct>50?'var(--ok)':'var(--warn)'}"></div></div>
+              </td>
+              <td><span style="font-weight:600">${p.sesiones_realizadas}</span><span style="color:var(--muted)">/${p.sesiones_realizadas+(p.sesiones_restantes||0)}</span></td>
+              <td><span style="font-weight:600;color:${esCitaHoy?'var(--danger)':p.proxima_cita?'var(--verde)':'var(--mutedL)'}">${esCitaHoy?'🔴 OGGI':p.proxima_cita?esc(p.proxima_cita):'—'}</span></td>
+              <td><button class="btn btn-primary btn-sm" onclick="irA('paciente-ver',${p.id})">Apri →</button></td>
+            </tr>`;
+          }).join('')}
+        </tbody>
+      </table>
+    </div>`}
+  </div>`;
+}
+
+// ---- DETTAGLIO PAZIENTE ----
+function viewDetalle(){
+  const p=state.pacientes.find(x=>x.id===state.verPacienteId);
+  if(!p) return '<p>Paziente non trovato.</p>';
+  const tab=state.p_tab;
+  let tabContent='';
+  const pct=p.dolor_inicial>0?Math.round((1-p.dolor_actual/p.dolor_inicial)*100):0;
+
+  if(tab==='istoria'){
+    tabContent=`
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
+        <h4 style="font-size:14px;font-weight:700">Evoluzione Clinica</h4>
+        <button class="btn btn-primary btn-sm" onclick="abrirAgregarHistorial()">✍ Aggiungi nota</button>
+      </div>
+      ${(!p.historial||p.historial.length===0)?`<div style="text-align:center;padding:20px;color:var(--muted);font-size:13px">Nessun registro di evoluzione.</div>`:''}
+      ${(p.historial||[]).map(h=>`
+        <div class="history-item">
+          <div class="history-meta">
+            <strong>📅 ${esc(h.fecha)}</strong>
+            <button class="btn btn-danger btn-sm" style="padding:2px 7px;font-size:10px" onclick="eliminarHistorial(${h.id})">✕</button>
+          </div>
+          <div class="history-text">${esc(h.texto)}</div>
+        </div>
+      `).join('')}`;
+  } else if(tab==='pagamenti'){
+    let cobrado=0,pend=0;
+    (p.pagos||[]).forEach(pg=>{ if(pg.pagado) cobrado+=Number(pg.monto)||0; else pend+=Number(pg.monto)||0; });
+    tabContent=`
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
+        <div>
+          <h4 style="font-size:14px;font-weight:700">Storico Pagamenti</h4>
+          <span style="font-size:12px;color:var(--muted)">Incassato: <strong style="color:var(--ok)">${cobrado.toFixed(2)}€</strong> | Da incassare: <strong style="color:var(--danger)">${pend.toFixed(2)}€</strong></span>
+        </div>
+        <button class="btn btn-primary btn-sm" onclick="abrirAgregarPago()">+ Registra pagamento</button>
+      </div>
+      ${(!p.pagos||p.pagos.length===0)?'<div style="text-align:center;padding:20px;color:var(--muted);font-size:13px">Nessun pagamento registrato.</div>':''}
+      ${(p.pagos||[]).map(pg=>{
+        const c=calcNeto(pg.monto,pg.metodo,pg.lugar);
+        const metodoIcon={'Contanti':'💵','Bonifico':'🏦','Carta':'💳','Satispay':'📱','Link pagamento':'🔗'}[pg.metodo]||'💶';
+        return `<div class="pago-item">
+          <div style="display:flex;align-items:center;gap:12px">
+            <div class="pago-metodo-icon" style="background:${pg.pagado?'var(--okL)':'var(--warnL)'}">${metodoIcon}</div>
+            <div>
+              <div style="font-size:15px;font-weight:700">${Number(pg.monto).toFixed(2)}€
+                <span style="font-weight:400;font-size:12px;color:var(--muted)">→ netto: ${c.neto.toFixed(2)}€</span>
+              </div>
+              <div style="font-size:11px;color:var(--muted);margin-top:2px">
+                📅 ${esc(pg.fecha)} • ${esc(pg.metodo)} • ${esc(pg.lugar)}
+                ${c.com>0?`<span style="color:var(--danger)"> • comm: -${c.com.toFixed(2)}€</span>`:''}
+                ${c.fijos>0?`<span style="color:var(--warn)"> • affitto extra: -${c.fijos.toFixed(2)}€</span>`:''}
+                ${!c.esEfectivo?`<span style="color:#A855F7"> • IVA: -${c.iva.toFixed(2)}€</span>`:'<span style="color:var(--ok)"> • senza IVA</span>'}
+              </div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px">
+            ${pg.pagado?`<span class="badge badge-activo">✓ Incassato</span>`:
+              `<button class="btn btn-warn btn-sm" onclick="marcarPagoCobrado(${pg.id})">Segna pagato</button>`}
+            <button class="btn btn-secondary btn-sm" style="color:var(--danger)" onclick="eliminarPago(${pg.id})">✕</button>
+          </div>
+        </div>`;
+      }).join('')}`;
+  } else if(tab==='visite'){
+    const allCitas=[...(p.citas||[])].sort((a,b)=>new Date(b.fecha)-new Date(a.fecha));
+    tabContent=`
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
+        <h4 style="font-size:14px;font-weight:700">Storico Visite</h4>
+        <button class="btn btn-primary btn-sm" onclick="abrirNuevaCita('','')">+ Nuova visita</button>
+      </div>
+      ${allCitas.length===0?'<div style="text-align:center;padding:20px;color:var(--muted);font-size:13px">Nessuna visita registrata.</div>':''}
+      ${allCitas.map(c=>{
+        const pasada=c.fecha<hoyStr();
+        return `<div class="history-item" style="border-left:4px solid ${pasada?'var(--ok)':'#3B82F6'}">
+          <div class="history-meta">
+            <span><strong>📅 ${esc(c.fecha)}</strong> ${c.hora?`🕐 ${esc(c.hora)}`:''} ${pasada?'<span style="background:#D0F2E8;color:var(--ok);font-size:10px;font-weight:700;padding:1px 6px;border-radius:4px">✅ SVOLTA</span>':'<span style="background:#DBEAFE;color:#1D6FA4;font-size:10px;font-weight:700;padding:1px 6px;border-radius:4px">🔵 PROGRAMMATA</span>'}</span>
+            <button class="btn btn-danger btn-sm" style="padding:2px 7px;font-size:10px" onclick="eliminarCita(${p.id},${c.id})">✕</button>
+          </div>
+          ${c.zona?`<div style="font-size:12px;color:var(--verde);font-weight:600;margin-bottom:3px">📍 ${esc(c.zona)}</div>`:''}
+          ${c.nota?`<div class="history-text">${esc(c.nota)}</div>`:'<div style="font-size:12px;color:var(--mutedL)">Nessuna nota di seduta.</div>'}
+        </div>`;
+      }).join('')}`;
+  }
+
+  return `
+  <div style="margin-bottom:16px;display:flex;align-items:center;gap:10px">
+    <button class="btn btn-secondary btn-sm" onclick="irA('todos')">← Torna indietro</button>
+    <button class="btn btn-secondary btn-sm" onclick="abrirEditarPaciente(${p.id})">✏ Modifica</button>
+    <button class="btn btn-secondary btn-sm" onclick="abrirChiusura(${p.id})" style="margin-left:auto;color:var(--muted)">🏁 Chiudi caso</button>
+  </div>
+  <div style="display:grid;grid-template-columns:290px 1fr;gap:20px">
+    <div>
+      <div class="card" style="text-align:center;padding:28px 20px">
+        <div class="avatar" style="background:${p.avatarColor};width:68px;height:68px;font-size:26px;border-radius:18px;margin:0 auto 12px">${esc(p.nombre[0])}</div>
+        <h3 style="font-size:18px;font-weight:800;margin-bottom:6px;font-family:'Fraunces',serif">${esc(p.nombre)}</h3>
+        ${badgeEstado(p.estado)}
+        <div style="margin-top:16px;border-top:1px solid var(--border);padding-top:16px;text-align:left;display:flex;flex-direction:column;gap:10px;font-size:13px">
+          <div><label style="font-size:11px;display:block;margin-bottom:1px">Età</label><strong>${p.edad} anni</strong></div>
+          <div><label style="font-size:11px;display:block;margin-bottom:1px">Telefono</label><strong>${esc(p.telefono)}</strong></div>
+          <div><label style="font-size:11px;display:block;margin-bottom:1px">Email</label><strong style="word-break:break-all">${esc(p.email)||'—'}</strong></div>
+          <div><label style="font-size:11px;display:block;margin-bottom:1px">Inizio trattamento</label><strong>${esc(p.fecha_inicio)}</strong></div>
+          <div><label style="font-size:11px;display:block;margin-bottom:1px">Prossima visita</label><strong style="color:var(--verde)">${esc(p.proxima_cita)||'—'}</strong></div>
+          <div><label style="font-size:11px;display:block;margin-bottom:1px">Sedute</label><strong>${p.sesiones_realizadas} svolte / ${p.sesiones_restantes} in pacchetto</strong></div>
+        </div>
+        <button class="btn btn-secondary" style="width:100%;margin-top:14px;font-size:12px" onclick="abrirNuevaCita('${hoyStr()}','')">📅 Prenota visita</button>
+      </div>
+      <div class="card" style="padding:16px;margin-bottom:0">
+        <div style="font-size:13px;font-weight:700;margin-bottom:10px">📊 Progressione Dolore</div>
+        <div style="display:flex;justify-content:space-between;margin-bottom:10px">
+          <div style="text-align:center;flex:1;background:#FDECEA;padding:8px;border-radius:8px;margin-right:6px">
+            <div style="font-size:10px;color:var(--danger);font-weight:700">INIZIALE</div>
+            <div style="font-size:20px;font-weight:800;color:var(--danger);font-family:'Fraunces',serif">${p.dolor_inicial}/10</div>
+          </div>
+          <div style="text-align:center;flex:1;background:#D0F2E8;padding:8px;border-radius:8px">
+            <div style="font-size:10px;color:var(--ok);font-weight:700">ATTUALE</div>
+            <div style="font-size:20px;font-weight:800;color:var(--ok);font-family:'Fraunces',serif">${p.dolor_actual}/10</div>
+          </div>
+        </div>
+        <div style="font-size:12px;color:var(--muted);text-align:center;margin-bottom:10px">Miglioramento: <strong style="color:${pct>0?'var(--ok)':'var(--danger)'}">${pct}%</strong></div>
+        ${(p.dolorHistorial||[]).length>1?`
+        <div style="font-size:11px;color:var(--muted);margin-bottom:4px;font-weight:600">Andamento dolore nel tempo</div>
+        <div class="dolor-graph">
+          ${(p.dolorHistorial||[]).slice(-10).map(d=>{
+            const h=Math.max(6,(d.val/10)*50);
+            const col = d.val<=3?'var(--ok)':d.val<=6?'var(--warn)':'var(--danger)';
+            return `<div class="dolor-bar" title="${d.fecha}: ${d.val}/10" style="height:${h}px;background:${col}"></div>`;
+          }).join('')}
+        </div>`:''}
+        <label style="font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:0.3px;margin-bottom:6px;display:block;margin-top:10px">Aggiorna dolore attuale</label>
+        <div style="display:flex;align-items:center;gap:10px">
+          <input type="range" class="dolor-slider" min="0" max="10" value="${p.dolor_actual}" id="dolor-slider-${p.id}" oninput="aggiornaDolorePrev(${p.id},this.value)">
+          <span id="dolor-display-${p.id}" style="font-size:18px;font-weight:800;color:var(--ok);font-family:'Fraunces',serif;min-width:28px;text-align:center">${p.dolor_actual}</span>
+        </div>
+        <button class="btn btn-primary" style="width:100%;margin-top:8px;font-size:12px" onclick="guardarDolore(${p.id})">💾 Salva dolore</button>
+      </div>
+    </div>
+    <div>
+      <div class="card" style="margin-bottom:16px">
+        <div style="font-size:14px;font-weight:700;margin-bottom:8px">Motivo della visita</div>
+        <p style="font-size:13px;line-height:1.6;background:var(--bg);padding:12px;border-radius:8px;border:1px solid var(--border)">${esc(p.motivo)||'Non specificato.'}</p>
+      </div>
+      <div class="card">
+        <div class="p-tab-nav">
+          <div class="p-tab ${tab==='istoria'?'active':''}" onclick="state.p_tab='istoria';render()">📋 Evoluzione</div>
+          <div class="p-tab ${tab==='visite'?'active':''}" onclick="state.p_tab='visite';render()">📅 Visite</div>
+          <div class="p-tab ${tab==='pagamenti'?'active':''}" onclick="state.p_tab='pagamenti';render()">💶 Pagamenti</div>
+        </div>
+        ${tabContent}
+      </div>
+    </div>
+  </div>`;
+}
+
+function aggiornaDolorePrev(id, val){
+  document.getElementById(`dolor-display-${id}`).textContent = val;
+}
+
+function guardarDolore(id){
+  const p = state.pacientes.find(x=>x.id===id); if(!p) return;
+  const slider = document.getElementById(`dolor-slider-${id}`);
+  const val = parseInt(slider.value);
+  p.dolor_actual = val;
+  if(!p.dolorHistorial) p.dolorHistorial=[];
+  p.dolorHistorial.push({fecha:hoyStr(), val});
+  guardar(); render(); toast('✅ Dolore aggiornato');
+}
+
+// Chiusura caso con riepilogo
+function abrirChiusura(id){
+  const p = state.pacientes.find(x=>x.id===id); if(!p) return;
+  let totalInc=0, totalNet=0;
+  (p.pagos||[]).filter(pg=>pg.pagado).forEach(pg=>{ totalInc+=Number(pg.monto)||0; totalNet+=calcNeto(pg.monto,pg.metodo,pg.lugar).neto; });
+  const html=`
+    <div style="text-align:center;padding:10px 0 20px">
+      <div style="font-size:40px;margin-bottom:8px">🏁</div>
+      <div style="font-size:16px;font-weight:700">Chiusura caso: ${esc(p.nombre)}</div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px">
+      <div style="background:var(--bg);border-radius:10px;padding:14px;text-align:center">
+        <div style="font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase">Sedute svolte</div>
+        <div style="font-size:28px;font-weight:700;font-family:'Fraunces',serif;color:var(--verde)">${p.sesiones_realizadas}</div>
+      </div>
+      <div style="background:var(--bg);border-radius:10px;padding:14px;text-align:center">
+        <div style="font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase">Incassato netto</div>
+        <div style="font-size:28px;font-weight:700;font-family:'Fraunces',serif;color:var(--ok)">${totalNet.toFixed(0)}€</div>
+      </div>
+      <div style="background:var(--bg);border-radius:10px;padding:14px;text-align:center">
+        <div style="font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase">Dolore: ${p.dolor_inicial} → ${p.dolor_actual}</div>
+        <div style="font-size:28px;font-weight:700;font-family:'Fraunces',serif;color:${p.dolor_inicial>p.dolor_actual?'var(--ok)':'var(--danger)'}">${p.dolor_inicial>0?Math.round((1-p.dolor_actual/p.dolor_inicial)*100):0}% migl.</div>
+      </div>
+      <div style="background:var(--bg);border-radius:10px;padding:14px;text-align:center">
+        <div style="font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase">In trattamento dal</div>
+        <div style="font-size:16px;font-weight:700;color:var(--text);margin-top:6px">${esc(p.fecha_inicio)}</div>
+      </div>
+    </div>
+    <div class="form-group"><label>Nota di chiusura (opzionale)</label><textarea id="chiusura-nota" rows="3" placeholder="Es: obiettivi raggiunti, paziente soddisfatto..."></textarea></div>
+    <div class="form-group" style="margin-top:10px"><label>Nuovo stato</label>
+      <select id="chiusura-estado">
+        <option value="Dimesso">Dimesso (completato)</option>
+        <option value="In pausa">In pausa (temporaneo)</option>
+      </select>
+    </div>`;
+  abrirModal('🏁 Chiudi Caso Clinico', html, `
+    <button class="btn btn-secondary" onclick="cerrarModal()">Annulla</button>
+    <button class="btn btn-primary" onclick="guardarChiusura(${id})">Conferma chiusura</button>
+  `);
+}
+
+function guardarChiusura(id){
+  const p = state.pacientes.find(x=>x.id===id); if(!p) return;
+  const nota = document.getElementById('chiusura-nota').value.trim();
+  const newEstado = document.getElementById('chiusura-estado').value;
+  p.estado = newEstado;
+  p.proxima_cita = '';
+  p.hora_cita = '';
+  if(nota){
+    if(!p.historial) p.historial=[];
+    p.historial.unshift({id:Date.now(),fecha:hoyStr(),texto:`[CHIUSURA] ${nota}`});
+  }
+  guardar(); cerrarModal(); render(); toast('🏁 Caso chiuso');
+}
+
+// ---- CONTABILITA' ----
+function viewContabilidad(){
+  const s=state.stats;
+  let todosPagos=[];
+  state.pacientes.forEach(p=>(p.pagos||[]).forEach(pg=>todosPagos.push({...pg,pacienteNombre:p.nombre,pacienteId:p.id})));
+  todosPagos.sort((a,b)=>new Date(b.fecha)-new Date(a.fecha));
+
+  // Filtri
+  const fMes = state.contab_filtroMes||'';
+  const fMet = state.contab_filtroMetodo||'';
+  const fPac = state.contab_filtroPaciente||'';
+  let pagiFiltrati = todosPagos.filter(pg=>{
+    if(fMes && !(pg.fecha||'').startsWith(fMes)) return false;
+    if(fMet && pg.metodo!==fMet) return false;
+    if(fPac && !pg.pacienteNombre.toLowerCase().includes(fPac.toLowerCase())) return false;
+    return true;
+  });
+
+  const porMetodo={};
+  todosPagos.filter(pg=>pg.pagado).forEach(pg=>{ porMetodo[pg.metodo]=(porMetodo[pg.metodo]||0)+Number(pg.monto); });
+  const maxVal=Math.max(...Object.values(porMetodo),1);
+
+  const now=new Date();
+  const mensili=[];
+  for(let i=5;i>=0;i--){
+    const d=new Date(now.getFullYear(), now.getMonth()-i, 1);
+    const ms=`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}`;
+    let tot=0;
+    state.pacientes.forEach(p=>(p.pagos||[]).forEach(pg=>{ if(pg.pagado&&(pg.fecha||'').startsWith(ms)) tot+=Number(pg.monto)||0; }));
+    mensili.push({label:`${MESI_BREVE[d.getMonth()]} ${d.getFullYear()}`, total:tot, ms});
+  }
+  const maxMes=Math.max(...mensili.map(m=>m.total),1);
+  const metodoIcons={'Contanti':'💵','Bonifico':'🏦','Carta':'💳','Satispay':'📱','Link pagamento':'🔗'};
+
+  // Totali filtrati
+  let totLordo=0,totNetto=0,totComm=0,totIva=0,totAffitto=0;
+  pagiFiltrati.filter(pg=>pg.pagado).forEach(pg=>{
+    const c=calcNeto(pg.monto,pg.metodo,pg.lugar);
+    totLordo+=c.bruto; totNetto+=c.neto; totComm+=c.com; totIva+=c.iva; totAffitto+=c.affitto+c.fijos;
+  });
+
+  return `
+  <h2 style="font-size:22px;font-weight:700;margin-bottom:20px;font-family:'Fraunces',serif">💶 Contabilità</h2>
+  <div class="stats-grid" style="margin-bottom:20px">
+    <div class="stat-card" style="border-top:3px solid var(--ok)"><div class="stat-icon">✅</div><div class="stat-label">Lordo Incassato</div><div class="stat-val">${s.bruto.toFixed(2)}€</div></div>
+    <div class="stat-card" style="border-top:3px solid var(--verde)"><div class="stat-icon">💶</div><div class="stat-label">Netto Reale</div><div class="stat-val" style="color:var(--verde)">${s.neto.toFixed(2)}€</div><div class="stat-sub">dopo commissioni e IVA</div></div>
+    <div class="stat-card" style="border-top:3px solid var(--warn)"><div class="stat-icon">⏳</div><div class="stat-label">Da Incassare (lordo)</div><div class="stat-val" style="color:var(--warn)">${s.pend.toFixed(2)}€</div></div>
+    <div class="stat-card" style="border-top:3px solid var(--danger)"><div class="stat-icon">⚠️</div><div class="stat-label">Da Incassare (netto)</div><div class="stat-val" style="color:var(--danger)">${s.pendN.toFixed(2)}€</div></div>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:20px">
+    <div class="card" style="margin-bottom:0">
+      <div class="card-title">📊 Incassi per metodo</div>
+      <div class="chart-bar-wrap">
+        ${Object.entries(porMetodo).sort((a,b)=>b[1]-a[1]).map(([m,v])=>`
+          <div class="chart-bar-row">
+            <div class="chart-bar-label">${(metodoIcons[m]||'💶')} ${m}</div>
+            <div class="chart-bar-bg"><div class="chart-bar-fill" style="width:${(v/maxVal*100).toFixed(0)}%"></div></div>
+            <div class="chart-bar-val">${v.toFixed(0)}€</div>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+    <div class="card" style="margin-bottom:0">
+      <div class="card-title">📅 Incassi mensili</div>
+      <div class="chart-bar-wrap">
+        ${mensili.map((m,idx)=>`
+          <div class="chart-bar-row" style="cursor:pointer" onclick="state.contab_filtroMes=state.contab_filtroMes===m.ms?'':m.ms;render()">
+            <div class="chart-bar-label" style="${state.contab_filtroMes===m.ms?'color:var(--verde);font-weight:700':''}">${m.label}</div>
+            <div class="chart-bar-bg"><div class="chart-bar-fill" style="width:${(m.total/maxMes*100).toFixed(0)}%;background:${idx===mensili.length-1?'var(--gold)':'var(--verde)'}"></div></div>
+            <div class="chart-bar-val">${m.total.toFixed(0)}€</div>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+  </div>
+  <div class="card" style="margin-bottom:20px">
+    <div class="card-title">🧮 Riepilogo IVA</div>
+    ${calcFiscalHTML(s.neto,s.bruto)}
+  </div>
+  <div class="card">
+    <div class="card-title">📒 Registro Transazioni
+      <div style="display:flex;gap:8px">
+        <button class="btn btn-secondary btn-sm" onclick="exportarCSV()">⬇ CSV</button>
+        <button class="btn btn-secondary btn-sm" onclick="exportarBackup()">💾 Backup</button>
+      </div>
+    </div>
+    <div style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap">
+      <input type="text" placeholder="🔍 Paziente..." style="padding:7px 10px;border:1.5px solid var(--border);border-radius:7px;font-size:12px;font-family:inherit;background:var(--white);color:var(--text);min-width:140px" value="${esc(fPac)}" oninput="state.contab_filtroPaciente=this.value;render()">
+      <select onchange="state.contab_filtroMetodo=this.value;render()" style="padding:7px 10px;border:1.5px solid var(--border);border-radius:7px;font-size:12px;font-family:inherit;background:var(--white);color:var(--text)">
+        <option value="" ${!fMet?'selected':''}>Tutti i metodi</option>
+        ${['Contanti','Bonifico','Carta','Satispay','Link pagamento'].map(m=>`<option value="${m}" ${fMet===m?'selected':''}>${metodoIcons[m]||''} ${m}</option>`).join('')}
+      </select>
+      <select onchange="state.contab_filtroMes=this.value;render()" style="padding:7px 10px;border:1.5px solid var(--border);border-radius:7px;font-size:12px;font-family:inherit;background:var(--white);color:var(--text)">
+        <option value="" ${!fMes?'selected':''}>Tutti i mesi</option>
+        ${mensili.map(m=>`<option value="${m.ms}" ${fMes===m.ms?'selected':''}>${m.label}</option>`).join('')}
+      </select>
+      ${(fMes||fMet||fPac)?`<button class="btn btn-secondary btn-sm" onclick="state.contab_filtroMes='';state.contab_filtroMetodo='';state.contab_filtroPaciente='';render()">✕ Reset</button>`:''}
+    </div>
+    ${pagiFiltrati.length>0&&(fMes||fMet||fPac)?`
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:12px;background:var(--verdeL);border-radius:10px;padding:10px 14px;font-size:12px">
+      <div><span style="color:var(--muted)">Lordo</span><br><strong>${totLordo.toFixed(2)}€</strong></div>
+      <div><span style="color:var(--muted)">Comm.+Affitto</span><br><strong style="color:var(--danger)">-${(totComm+totAffitto).toFixed(2)}€</strong></div>
+      <div><span style="color:var(--muted)">IVA 35%</span><br><strong style="color:#A855F7">-${totIva.toFixed(2)}€</strong></div>
+      <div><span style="color:var(--muted)">Netto</span><br><strong style="color:var(--verde)">${totNetto.toFixed(2)}€</strong></div>
+    </div>`:''}
+    ${pagiFiltrati.length===0?'<div style="text-align:center;padding:24px;color:var(--muted)">Nessun movimento trovato.</div>':`
+    <div class="table-w" style="margin-top:0">
+      <table>
+        <thead><tr><th>Data</th><th>Paziente</th><th>Studio</th><th>Metodo</th><th>Lordo</th><th>Comm.+Affitto</th><th>Base</th><th>IVA (35%)</th><th>Netto</th><th>Stato</th></tr></thead>
+        <tbody>
+          ${pagiFiltrati.map(pg=>{
+            const c=calcNeto(pg.monto,pg.metodo,pg.lugar);
+            const commAff = c.com+c.fijos+c.affitto;
+            return `<tr>
+              <td style="white-space:nowrap">${esc(pg.fecha)}</td>
+              <td><span class="p-name" onclick="irA('paciente-ver',${pg.pacienteId})">${esc(pg.pacienteNombre)}</span></td>
+              <td>${esc(pg.lugar)}</td>
+              <td><span style="font-size:15px">${metodoIcons[pg.metodo]||'💶'}</span> ${esc(pg.metodo)}</td>
+              <td><strong>${c.bruto.toFixed(2)}€</strong></td>
+              <td style="color:var(--danger)">-${commAff.toFixed(2)}€</td>
+              <td>${c.base.toFixed(2)}€</td>
+              <td style="color:#A855F7">${c.esEfectivo?'—':'-'+c.iva.toFixed(2)+'€'}</td>
+              <td><strong style="color:var(--ok)">${c.neto.toFixed(2)}€</strong></td>
+              <td><span class="badge badge-${pg.pagado?'activo':'enpausa'}">${pg.pagado?'Incassato':'Da incassare'}</span></td>
+            </tr>`;
+          }).join('')}
+        </tbody>
+      </table>
+    </div>`}
+  </div>`;
+}
+
+function calcFiscalHTML(neto, bruto){
+  const affitto = neto * AFFITTO_RATE;
+  const base = neto - affitto;
+  const iva = base * IVA_RATE;
+  const final = base - iva;
+  const pctFinal = neto>0 ? ((final/neto)*100).toFixed(0) : 0;
+  return `<div style="font-size:13px;display:grid;grid-template-columns:1fr 1fr;gap:12px">
+    <div>
+      <div style="display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--border)"><span style="color:var(--muted)">Netto incassato</span><strong>${neto.toFixed(2)}€</strong></div>
+      <div style="display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--border);color:var(--danger)"><span>- Affitto studio (25%)</span><span>-${affitto.toFixed(2)}€</span></div>
+      <div style="display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--border)"><span>Base imponibile</span><strong>${base.toFixed(2)}€</strong></div>
+      <div style="display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--border);color:#A855F7"><span>- IVA (35%)</span><span>-${iva.toFixed(2)}€</span></div>
+      <div style="display:flex;justify-content:space-between;background:var(--verdeL);border-radius:8px;padding:10px 12px;margin-top:8px"><span style="font-weight:700">✅ Rimane a te</span><strong style="color:var(--verde);font-size:17px">${final.toFixed(2)}€</strong></div>
+    </div>
+    <div style="background:var(--bg);border-radius:10px;padding:14px">
+      <div style="font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:10px">Distribuzione</div>
+      ${neto>0?`
+        <div style="background:var(--border);border-radius:6px;height:24px;overflow:hidden;display:flex;margin-bottom:8px">
+          <div style="width:${pctFinal}%;background:var(--ok)" title="Tuo ${pctFinal}%"></div>
+          <div style="width:${((affitto/neto)*100).toFixed(0)}%;background:#FCA5A5" title="Affitto"></div>
+          <div style="width:${((iva/neto)*100).toFixed(0)}%;background:#C084FC" title="IVA"></div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:4px;font-size:12px">
+          <span style="display:flex;justify-content:space-between"><span style="display:flex;align-items:center;gap:5px"><span style="width:8px;height:8px;background:var(--ok);border-radius:2px;display:inline-block"></span>Tuo</span><strong>${pctFinal}%</strong></span>
+          <span style="display:flex;justify-content:space-between"><span style="display:flex;align-items:center;gap:5px"><span style="width:8px;height:8px;background:#FCA5A5;border-radius:2px;display:inline-block"></span>Affitto</span><strong>${((affitto/neto)*100).toFixed(0)}%</strong></span>
+          <span style="display:flex;justify-content:space-between"><span style="display:flex;align-items:center;gap:5px"><span style="width:8px;height:8px;background:#C084FC;border-radius:2px;display:inline-block"></span>IVA</span><strong>${((iva/neto)*100).toFixed(0)}%</strong></span>
+        </div>
+      `:'<p style="color:var(--muted);font-size:12px">Registra pagamenti per vedere la distribuzione.</p>'}
+    </div>
+  </div>
+  <div style="font-size:11px;color:var(--muted);margin-top:8px;font-style:italic">* Contanti: solo affitto 25%, senza IVA. Stima orientativa, consulta un commercialista.</div>`;
+}
+
+// ---- CALCOLATRICE — aggiornamento veloce senza render() ----
+function viewCalcolatrice(){
+  const b = parseFloat(state.calcBruto)||0;
+  const met = state.calcMetodo||'Carta';
+  const lug = state.calcLugar||'Studio A';
+  const METODI=[
+    {id:'Contanti',icon:'💵',label:'Contanti'},
+    {id:'Bonifico',icon:'🏦',label:'Bonifico'},
+    {id:'Carta',icon:'💳',label:'Carta'},
+    {id:'Satispay',icon:'📱',label:'Satispay'},
+  ];
+
+  return `
+  <h2 style="font-size:22px;font-weight:700;margin-bottom:20px;font-family:'Fraunces',serif">🧮 Calcolatrice Fiscale</h2>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
+    <div class="calc-hero" id="calc-hero-box">
+      <div class="calc-hero-title">Quanto ti rimane?</div>
+      <div class="calc-amount-display" id="calc-display-final">—</div>
+      <div class="calc-amount-sub" id="calc-display-sub">inserisci un importo per calcolare</div>
+
+      <div class="calc-metodi">
+        ${METODI.map(m=>`
+          <div class="calc-metodo-btn ${met===m.id?'active':''}" id="cbtn-${m.id}" onclick="calcSelMetodo('${m.id}')">
+            <span class="cmi">${m.icon}</span>${m.label}
+          </div>
+        `).join('')}
+      </div>
+
+      <div style="margin-bottom:16px;position:relative;z-index:1">
+        <label style="color:rgba(255,255,255,0.6);font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;display:block;margin-bottom:6px">Studio / Luogo</label>
+        <select id="calc-lugar-sel" onchange="calcSelLugar(this.value)" style="width:100%;padding:8px 12px;border-radius:8px;border:1.5px solid rgba(255,255,255,0.25);background:rgba(255,255,255,0.1);color:#fff;font-size:13px;font-family:inherit">
+          <option value="Studio A" ${lug==='Studio A'?'selected':''}>Studio A (base)</option>
+          <option value="Studio B" ${lug==='Studio B'?'selected':''}>Studio B (+10€ affitto)</option>
+          <option value="Domicilio" ${lug==='Domicilio'?'selected':''}>Domicilio (+5€)</option>
+        </select>
+      </div>
+
+      <div class="calc-input-wrap">
+        <input class="calc-euro-input" type="number" id="calc-input-main" placeholder="0.00 €" step="0.01" value="${state.calcBruto}" oninput="calcUpdate(this.value)">
+      </div>
+
+      <div class="calc-breakdown" id="calc-breakdown-box">
+        <div class="calc-breakdown-row cb-zero"><span class="cb-label">Inserisci un importo sopra</span><span></span></div>
+      </div>
+    </div>
+
+    <div>
+      <div class="card" style="margin-bottom:16px">
+        <div class="card-title">📊 Dettaglio visivo</div>
+        <div id="calc-visual-box"><p style="color:var(--muted)">Inserisci un importo per vedere il dettaglio.</p></div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">💡 Confronto rapido <span style="font-size:11px;font-weight:400;color:var(--muted)">per importo</span></div>
+        <div style="overflow-x:auto">
+          <table style="width:100%;font-size:12px" id="calc-compare-table">
+            <thead><tr>
+              <th style="text-align:left;padding:6px 8px;color:var(--muted);font-weight:600;border-bottom:1px solid var(--border)">Lordo</th>
+              <th style="text-align:right;padding:6px 8px;color:var(--ok);font-weight:600;border-bottom:1px solid var(--border)">💵 Contanti</th>
+              <th style="text-align:right;padding:6px 8px;color:var(--verde);font-weight:600;border-bottom:1px solid var(--border)">💳 Carta/Bonifico</th>
+            </tr></thead>
+            <tbody id="calc-compare-body">
+              ${buildCompareRows(parseFloat(state.calcBruto)||0, lug)}
+            </tbody>
+          </table>
+        </div>
+        <div style="font-size:11px;color:var(--muted);margin-top:8px">* Carta include commissione ${(CARTA_COM*100).toFixed(2)}% • IVA 35% • Affitto ${(AFFITTO_RATE*100).toFixed(0)}%</div>
+      </div>
+    </div>
+  </div>`;
+}
+
+function buildCompareRows(activoVal, lugar){
+  return [40,50,60,75,80,100].map(v=>{
+    const cEfec = calcNeto(v,'Contanti',lugar||'Studio A');
+    const cCarta = calcNeto(v,'Carta',lugar||'Studio A');
+    const activo = Math.abs(v-activoVal)<0.01;
+    return `<tr style="${activo?'background:var(--verdeL);':''}" onclick="calcUpdate(${v})">
+      <td style="padding:8px;font-weight:${activo?'700':'500'};border-bottom:1px solid var(--border);cursor:pointer">${v}€</td>
+      <td style="padding:8px;text-align:right;font-weight:700;color:var(--ok);border-bottom:1px solid var(--border)">${cEfec.neto.toFixed(2)}€</td>
+      <td style="padding:8px;text-align:right;font-weight:600;color:var(--verde);border-bottom:1px solid var(--border)">${cCarta.neto.toFixed(2)}€</td>
+    </tr>`;
+  }).join('');
+}
+
+// Aggiornamento VELOCE della calcolatrice (senza render completo)
+function calcUpdate(val){
+  state.calcBruto = val;
+  const input = document.getElementById('calc-input-main');
+  if(input && input.value != val) input.value = val;
+  const b = parseFloat(val)||0;
+  const met = state.calcMetodo||'Carta';
+  const lug = state.calcLugar||'Studio A';
+  const c = calcNeto(b, met, lug);
+  const pctTuyo = b>0 ? ((c.neto/b)*100) : 0;
+
+  // Display principale
+  const dispFinal = document.getElementById('calc-display-final');
+  const dispSub = document.getElementById('calc-display-sub');
+  if(dispFinal) dispFinal.textContent = b>0 ? c.neto.toFixed(2)+'€' : '—';
+  if(dispSub) dispSub.textContent = b>0 ? `su ${b.toFixed(2)}€ lordi (${pctTuyo.toFixed(1)}% rimane a te)` : 'inserisci un importo per calcolare';
+
+  // Breakdown
+  const bd = document.getElementById('calc-breakdown-box');
+  if(bd) bd.innerHTML = `
+    <div class="calc-breakdown-row"><span class="cb-label">💶 Importo lordo</span><span class="cb-val">${b.toFixed(2)}€</span></div>
+    ${c.com>0?`<div class="calc-breakdown-row"><span class="cb-label">💳 Commissione (${(CARTA_COM*100).toFixed(2)}%)</span><span class="cb-val cb-neg">-${c.com.toFixed(2)}€</span></div>`:''}
+    ${c.fijos>0?`<div class="calc-breakdown-row"><span class="cb-label">🏠 Extra luogo</span><span class="cb-val cb-neg">-${c.fijos.toFixed(2)}€</span></div>`:''}
+    <div class="calc-breakdown-row"><span class="cb-label">🏢 Affitto studio (25%)</span><span class="cb-val cb-neg">-${c.affitto.toFixed(2)}€</span></div>
+    <div class="calc-breakdown-row"><span class="cb-label">📊 Base imponibile</span><span class="cb-val">${c.base.toFixed(2)}€</span></div>
+    ${c.esEfectivo?
+      `<div class="calc-breakdown-row cb-zero"><span class="cb-label">🏛 IVA</span><span class="cb-val">0.00€ ✅ esente</span></div>`:
+      `<div class="calc-breakdown-row"><span class="cb-label">🏛 IVA (35%)</span><span class="cb-val cb-neg">-${c.iva.toFixed(2)}€</span></div>`}
+    <div class="calc-breakdown-row total-row"><span>✅ Rimane a te</span><span class="cb-final">${c.neto.toFixed(2)}€</span></div>`;
+
+  // Visuale
+  const vis = document.getElementById('calc-visual-box');
+  if(vis && b>0){
+    vis.innerHTML = `
+      <div style="display:flex;justify-content:space-between;margin-bottom:6px;font-size:12px">
+        <span style="color:var(--ok);font-weight:700">Ricevi il ${pctTuyo.toFixed(1)}% del lordo</span>
+        <span style="color:var(--muted)">${met}</span>
+      </div>
+      <div style="background:var(--border);border-radius:8px;height:32px;overflow:hidden;display:flex">
+        <div style="width:${pctTuyo.toFixed(1)}%;background:var(--ok);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#fff">${pctTuyo.toFixed(0)}%</div>
+        ${c.com>0?`<div style="width:${((c.com/b)*100).toFixed(1)}%;background:#A78BFA" title="Commissione"></div>`:''}
+        <div style="width:${((c.affitto+c.fijos)/b*100).toFixed(1)}%;background:#FCA5A5" title="Affitto"></div>
+        ${!c.esEfectivo?`<div style="width:${((c.iva/b)*100).toFixed(1)}%;background:#C084FC" title="IVA"></div>`:''}
+      </div>
+      <div style="display:flex;gap:10px;margin-top:8px;font-size:11px;flex-wrap:wrap">
+        <span style="display:flex;align-items:center;gap:4px"><span style="width:8px;height:8px;background:var(--ok);border-radius:2px;display:inline-block"></span>Tuo ${pctTuyo.toFixed(0)}%</span>
+        ${c.com>0?`<span style="display:flex;align-items:center;gap:4px"><span style="width:8px;height:8px;background:#A78BFA;border-radius:2px;display:inline-block"></span>Comm. ${(CARTA_COM*100).toFixed(2)}%</span>`:''}
+        <span style="display:flex;align-items:center;gap:4px"><span style="width:8px;height:8px;background:#FCA5A5;border-radius:2px;display:inline-block"></span>Affitto ${(((c.affitto+c.fijos)/b)*100).toFixed(0)}%</span>
+        ${!c.esEfectivo?`<span style="display:flex;align-items:center;gap:4px"><span style="width:8px;height:8px;background:#C084FC;border-radius:2px;display:inline-block"></span>IVA 35%</span>`:'<span style="color:var(--ok);font-weight:600">✅ Senza IVA</span>'}
+      </div>`;
+  } else if(vis){
+    vis.innerHTML='<p style="color:var(--muted)">Inserisci un importo per vedere il dettaglio.</p>';
+  }
+
+  // Tabella confronto
+  const tbody = document.getElementById('calc-compare-body');
+  if(tbody) tbody.innerHTML = buildCompareRows(b, lug);
+}
+
+function calcSelMetodo(m){
+  state.calcMetodo = m;
+  document.querySelectorAll('.calc-metodo-btn').forEach(el=>el.classList.remove('active'));
+  const btn = document.getElementById('cbtn-'+m); if(btn) btn.classList.add('active');
+  calcUpdate(state.calcBruto);
+}
+
+function calcSelLugar(l){
+  state.calcLugar = l;
+  calcUpdate(state.calcBruto);
+}
+
+// ---- BADGE ----
+function badgeEstado(e){
+  const map={'Attivo':'activo','Prima visita':'primeraconsulta','In pausa':'enpausa','Dimesso':'altamedica'};
+  const labels={'Attivo':'Attivo','Prima visita':'Prima visita','In pausa':'In pausa','Dimesso':'Dimesso'};
+  return `<span class="badge badge-${map[e]||'altamedica'}">${labels[e]||e}</span>`;
+}
+
+// ---- MODALI PAZIENTE ----
+function abrirModal(titulo, html, pie){
+  document.getElementById('modal-title').textContent=titulo;
+  document.getElementById('modal-body').innerHTML=html;
+  document.getElementById('modal-foot').innerHTML=pie;
+  document.getElementById('modal').style.display='flex';
+}
+function cerrarModal(){ document.getElementById('modal').style.display='none'; }
+
+function abrirNuovoPaziente(){ abrirModal('➕ Nuovo Paziente', formPaziente(), `<button class="btn btn-secondary" onclick="cerrarModal()">Annulla</button><button class="btn btn-primary" onclick="guardarNuevoPaciente()">Registra</button>`); }
+
+function abrirEditarPaciente(id){
+  const p=state.pacientes.find(x=>x.id===id); if(!p) return;
+  abrirModal('✏ Modifica Paziente', formPaziente(p), `
+    <button class="btn btn-danger" style="margin-right:auto" onclick="eliminarPaciente(${id})">Elimina</button>
+    <button class="btn btn-secondary" onclick="cerrarModal()">Annulla</button>
+    <button class="btn btn-primary" onclick="guardarEditarPaciente(${id})">Salva</button>
+  `);
+}
+
+function formPaziente(p){
+  return `
+  <div class="form-grid">
+    <div class="form-group"><label>Nome *</label><input type="text" id="p-nombre" value="${esc(p?.nombre||'')}"></div>
+    <div class="form-group"><label>Età</label><input type="number" id="p-edad" value="${p?.edad||''}"></div>
+  </div>
+  <div class="form-grid">
+    <div class="form-group"><label>Telefono *</label><input type="text" id="p-tel" value="${esc(p?.telefono||'')}"></div>
+    <div class="form-group"><label>Email</label><input type="email" id="p-email" value="${esc(p?.email||'')}"></div>
+  </div>
+  <div class="form-grid">
+    <div class="form-group"><label>Stato</label>
+      <select id="p-estado">
+        ${['Attivo','Prima visita','In pausa','Dimesso'].map(e=>`<option ${p?.estado===e?'selected':''}>${e}</option>`).join('')}
+      </select>
+    </div>
+    <div class="form-group"><label>Data inizio</label><input type="date" id="p-fecha" value="${p?.fecha_inicio||hoyStr()}"></div>
+  </div>
+  <div class="form-grid">
+    <div class="form-group"><label>Sedute svolte</label><input type="number" id="p-sreal" value="${p?.sesiones_realizadas||0}"></div>
+    <div class="form-group"><label>Sedute in pacchetto</label><input type="number" id="p-srest" value="${p?.sesiones_restantes||0}"></div>
+  </div>
+  <div class="form-grid">
+    <div class="form-group">
+      <label>Dolore iniziale (0-10)</label>
+      <div class="dolor-slider-wrap">
+        <input type="range" class="dolor-slider" min="0" max="10" id="p-dini" value="${p?.dolor_inicial||0}" oninput="document.getElementById('dini-val').textContent=this.value">
+        <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--muted)"><span>0</span><span id="dini-val" style="font-weight:700;color:var(--danger);font-family:'Fraunces',serif;font-size:16px">${p?.dolor_inicial||0}</span><span>10</span></div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Dolore attuale (0-10)</label>
+      <div class="dolor-slider-wrap">
+        <input type="range" class="dolor-slider" min="0" max="10" id="p-dact" value="${p?.dolor_actual||0}" oninput="document.getElementById('dact-val').textContent=this.value">
+        <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--muted)"><span>0</span><span id="dact-val" style="font-weight:700;color:var(--ok);font-family:'Fraunces',serif;font-size:16px">${p?.dolor_actual||0}</span><span>10</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="form-group" style="margin-bottom:14px"><label>Prossima visita</label><input type="date" id="p-cita" value="${p?.proxima_cita||''}"></div>
+  <div class="form-group" style="margin-bottom:14px">
+    <label>Zone di intervento</label>
+    <div class="tag-container">
+      ${ZONAS.map(z=>`<input type="checkbox" id="z-${z}" class="tag-check" ${(p?.zonas||[]).includes(z)?'checked':''}><label for="z-${z}" class="tag-label">${z}</label>`).join('')}
+    </div>
+  </div>
+  <div class="form-group full"><label>Motivo della visita</label><textarea id="p-motivo" rows="3">${esc(p?.motivo||'')}</textarea></div>`;
+}
+
+function getPacienteForm(){
+  const nom=document.getElementById('p-nombre').value.trim();
+  const tel=document.getElementById('p-tel').value.trim();
+  if(!nom||!tel){alert('Nome e telefono sono obbligatori.');return null;}
+  const zonas=ZONAS.filter(z=>document.getElementById(`z-${z}`)?.checked);
+  return {nom,tel,zonas,
+    edad:parseInt(document.getElementById('p-edad').value)||0,
+    email:document.getElementById('p-email').value.trim(),
+    estado:document.getElementById('p-estado').value,
+    fecha_inicio:document.getElementById('p-fecha').value,
+    sesiones_realizadas:parseInt(document.getElementById('p-sreal').value)||0,
+    sesiones_restantes:parseInt(document.getElementById('p-srest').value)||0,
+    dolor_inicial:parseInt(document.getElementById('p-dini').value)||0,
+    dolor_actual:parseInt(document.getElementById('p-dact').value)||0,
+    proxima_cita:document.getElementById('p-cita').value,
+    motivo:document.getElementById('p-motivo').value.trim()
+  };
+}
+
+function guardarNuevoPaciente(){
+  const f=getPacienteForm(); if(!f) return;
+  const np={id:Date.now(),nombre:f.nom,edad:f.edad,telefono:f.tel,email:f.email,
+    estado:f.estado,fecha_inicio:f.fecha_inicio,sesiones_realizadas:f.sesiones_realizadas,
+    sesiones_restantes:f.sesiones_restantes,dolor_inicial:f.dolor_inicial,dolor_actual:f.dolor_actual,
+    proxima_cita:f.proxima_cita,zonas:f.zonas,motivo:f.motivo,
+    historial:[],pagos:[],citas:[],dolorHistorial:[],avatarColor:avatarColor(f.nom)};
+  if(f.dolor_inicial>0) np.dolorHistorial.push({fecha:f.fecha_inicio||hoyStr(),val:f.dolor_inicial});
+  state.pacientes.push(np);
+  guardar(); cerrarModal(); irA('todos'); toast('✅ Paziente registrato');
+}
+
+function guardarEditarPaciente(id){
+  const p=state.pacientes.find(x=>x.id===id); if(!p) return;
+  const f=getPacienteForm(); if(!f) return;
+  if(p.nombre!==f.nom) p.avatarColor=avatarColor(f.nom);
+  Object.assign(p,{nombre:f.nom,edad:f.edad,telefono:f.tel,email:f.email,
+    estado:f.estado,fecha_inicio:f.fecha_inicio,sesiones_realizadas:f.sesiones_realizadas,
+    sesiones_restantes:f.sesiones_restantes,dolor_inicial:f.dolor_inicial,dolor_actual:f.dolor_actual,
+    proxima_cita:f.proxima_cita,zonas:f.zonas,motivo:f.motivo});
+  guardar(); cerrarModal(); render(); toast('✅ Modifiche salvate');
+}
+
+function eliminarPaciente(id){
+  if(!confirm('Eliminare questo paziente e tutti i suoi dati?')) return;
+  state.pacientes=state.pacientes.filter(x=>x.id!==id);
+  guardar(); cerrarModal(); irA('todos'); toast('Paziente eliminato');
+}
+
+function abrirAgregarHistorial(){
+  const html=`
+    <div class="form-group"><label>Data</label><input type="date" id="h-fecha" value="${hoyStr()}"></div>
+    <div class="form-group" style="margin-top:12px"><label>Note cliniche</label>
+      <textarea id="h-texto" rows="5" placeholder="Osservazioni della seduta..."></textarea>
+    </div>`;
+  abrirModal('✍ Aggiungi Nota Clinica', html, `
+    <button class="btn btn-secondary" onclick="cerrarModal()">Annulla</button>
+    <button class="btn btn-primary" onclick="guardarHistorial()">Salva</button>
+  `);
+}
+
+function guardarHistorial(){
+  const p=state.pacientes.find(x=>x.id===state.verPacienteId);
+  const txt=document.getElementById('h-texto').value.trim();
+  if(!p||!txt) return;
+  if(!p.historial) p.historial=[];
+  p.historial.unshift({id:Date.now(),fecha:document.getElementById('h-fecha').value,texto:txt});
+  guardar(); cerrarModal(); render(); toast('✅ Nota salvata');
+}
+
+function eliminarHistorial(hid){
+  if(!confirm('Eliminare questo registro?')) return;
+  const p=state.pacientes.find(x=>x.id===state.verPacienteId); if(!p) return;
+  p.historial=p.historial.filter(h=>h.id!==hid);
+  guardar(); render(); toast('Registro eliminato');
+}
+
+function abrirAgregarPago(){
+  const html=`
+    <div style="margin-bottom:14px">
+      <label style="font-size:12px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:0.3px;display:block;margin-bottom:8px">Metodo di pagamento</label>
+      <div class="metodo-pills" id="metodo-pills-container">
+        ${[{id:'Contanti',icon:'💵'},{id:'Bonifico',icon:'🏦'},{id:'Carta',icon:'💳'},{id:'Satispay',icon:'📱'},{id:'Link pagamento',icon:'🔗'}].map(m=>`
+          <div class="metodo-pill ${m.id==='Carta'?'active':''}" id="mpill-${m.id}" onclick="selMetodoPill('${m.id}')">
+            <span class="mp-icon">${m.icon}</span>${m.id}
+          </div>
+        `).join('')}
+      </div>
+      <input type="hidden" id="pg-metodo" value="Carta">
+    </div>
+    <div class="form-grid">
+      <div class="form-group"><label>Importo (€) *</label><input type="number" id="pg-monto" step="0.01" value="50" oninput="updatePagPreview()"></div>
+      <div class="form-group"><label>Data</label><input type="date" id="pg-fecha" value="${hoyStr()}"></div>
+    </div>
+    <div class="form-group" style="margin-bottom:14px"><label>Studio / Luogo</label>
+      <select id="pg-lugar" onchange="updatePagPreview()">
+        <option value="Studio A">Studio A</option>
+        <option value="Studio B">Studio B (+10€ affitto)</option>
+        <option value="Domicilio">Domicilio (+5€)</option>
+      </select>
+    </div>
+    <div id="pag-preview" style="background:var(--verdeL);border-radius:10px;padding:12px 14px;font-size:13px;margin-bottom:12px"></div>
+    <div class="form-group">
+      <label style="display:flex;align-items:center;gap:8px;cursor:pointer;text-transform:none;letter-spacing:0;font-size:13px;font-weight:500">
+        <input type="checkbox" id="pg-pagado" checked style="width:16px;height:16px"> Pagamento già incassato
+      </label>
+    </div>`;
+  abrirModal('💶 Registra Pagamento', html, `
+    <button class="btn btn-secondary" onclick="cerrarModal()">Annulla</button>
+    <button class="btn btn-primary" onclick="guardarPago()">Registra</button>
+  `);
+  setTimeout(()=>updatePagPreview(), 50);
+}
+
+function selMetodoPill(metodo){
+  document.querySelectorAll('.metodo-pill').forEach(el=>el.classList.remove('active'));
+  const el=document.getElementById('mpill-'+metodo); if(el) el.classList.add('active');
+  document.getElementById('pg-metodo').value=metodo;
+  updatePagPreview();
+}
+
+function updatePagPreview(){
+  const monto=parseFloat(document.getElementById('pg-monto')?.value)||0;
+  const metodo=document.getElementById('pg-metodo')?.value||'Carta';
+  const lugar=document.getElementById('pg-lugar')?.value||'Studio A';
+  const prev=document.getElementById('pag-preview'); if(!prev) return;
+  const c=calcNeto(monto,metodo,lugar);
+  prev.innerHTML=`
+    <div style="display:flex;justify-content:space-between;align-items:center"><span style="color:var(--muted)">Lordo</span><strong>${monto.toFixed(2)}€</strong></div>
+    ${c.com>0?`<div style="display:flex;justify-content:space-between;align-items:center;margin-top:3px"><span style="color:var(--muted)">Commissione (${(CARTA_COM*100).toFixed(2)}%)</span><span style="color:var(--danger)">-${c.com.toFixed(2)}€</span></div>`:''}
+    ${c.fijos>0?`<div style="display:flex;justify-content:space-between;align-items:center;margin-top:3px"><span style="color:var(--muted)">Extra luogo</span><span style="color:var(--danger)">-${c.fijos.toFixed(2)}€</span></div>`:''}
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-top:3px"><span style="color:var(--muted)">Affitto studio (25%)</span><span style="color:var(--danger)">-${c.affitto.toFixed(2)}€</span></div>
+    ${!c.esEfectivo?`<div style="display:flex;justify-content:space-between;align-items:center;margin-top:3px"><span style="color:var(--muted)">IVA (35%)</span><span style="color:#A855F7">-${c.iva.toFixed(2)}€</span></div>`:'<div style="color:var(--ok);font-size:11px;margin-top:3px">✅ Contanti: niente IVA</div>'}
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-top:6px;border-top:1px solid rgba(0,107,84,0.2);padding-top:6px"><span style="font-weight:700">Stima netto</span><strong style="color:var(--verde);font-size:16px">${c.neto.toFixed(2)}€</strong></div>`;
+}
+
+function guardarPago(){
+  const p=state.pacientes.find(x=>x.id===state.verPacienteId);
+  const monto=document.getElementById('pg-monto').value;
+  if(!p||!monto) return;
+  if(!p.pagos) p.pagos=[];
+  const metodo=document.getElementById('pg-metodo').value;
+  const lugar=document.getElementById('pg-lugar').value;
+  const c=calcNeto(monto,metodo,lugar);
+  p.pagos.unshift({id:Date.now(),monto,fecha:document.getElementById('pg-fecha').value,
+    metodo,lugar,pagado:document.getElementById('pg-pagado').checked,netoPre:c.neto});
+  guardar(); cerrarModal(); render(); toast('✅ Pagamento registrato');
+}
+
+function marcarPagoCobrado(pgid){
+  const p=state.pacientes.find(x=>x.id===state.verPacienteId); if(!p) return;
+  const pg=p.pagos.find(x=>x.id===pgid); if(pg){ pg.pagado=true; pg.netoPre=calcNeto(pg.monto,pg.metodo,pg.lugar).neto; }
+  guardar(); render(); toast('✅ Segnato come incassato');
+}
+
+function eliminarPago(pgid){
+  if(!confirm('Eliminare questo pagamento?')) return;
+  const p=state.pacientes.find(x=>x.id===state.verPacienteId); if(!p) return;
+  p.pagos=p.pagos.filter(x=>x.id!==pgid);
+  guardar(); render(); toast('Pagamento eliminato');
+}
+
+// ---- EXPORT ----
+function exportarCSV(){
+  const h=["Nome","Età","Telefono","Email","Zone","Stato","Sedute svolte","Sedute pacchetto","Prossima visita","Dolore iniziale","Dolore attuale","Motivo","Incassato lordo","Incassato netto","Da incassare lordo","Da incassare netto"];
+  const rows=state.pacientes.map(p=>{
+    let cb=0,cn=0,pb=0,pn=0;
+    (p.pagos||[]).forEach(pg=>{
+      const c=calcNeto(pg.monto,pg.metodo,pg.lugar);
+      if(pg.pagado){cb+=c.bruto;cn+=c.neto;}else{pb+=c.bruto;pn+=c.neto;}
+    });
+    return [p.nombre,p.edad,p.telefono,p.email,(p.zonas||[]).join('|'),p.estado,p.sesiones_realizadas,p.sesiones_restantes,p.proxima_cita,p.dolor_inicial,p.dolor_actual,p.motivo,cb.toFixed(2),cn.toFixed(2),pb.toFixed(2),pn.toFixed(2)].map(v=>`"${(v||'').toString().replace(/"/g,'""')}"`);
+  });
+  const csv="data:text/csv;charset=utf-8,\uFEFF"+[h.join(','),...rows.map(r=>r.join(','))].join('\n');
+  const a=document.createElement('a');
+  a.href=encodeURI(csv); a.download=`FisioCRM_${hoyStr()}.csv`;
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  toast('✅ CSV esportato');
+}
+
+function exportarBackup(){
+  const data = JSON.stringify({version:2, date:hoyStr(), pacientes:state.pacientes}, null, 2);
+  const blob = new Blob([data], {type:'application/json'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href=url; a.download=`FisioCRM_Backup_${hoyStr()}.json`;
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+  toast('✅ Backup esportato');
+}
+
+function importarBackup(){
+  const input = document.createElement('input');
+  input.type='file'; input.accept='.json';
+  input.onchange = e=>{
+    const file = e.target.files[0]; if(!file) return;
+    const reader = new FileReader();
+    reader.onload = ev=>{
+      try{
+        const data = JSON.parse(ev.target.result);
+        const pacs = data.pacientes||data;
+        if(!Array.isArray(pacs)) throw new Error('Formato non valido');
+        if(!confirm(`Importare ${pacs.length} pazienti? I dati attuali verranno sostituiti.`)) return;
+        state.pacientes = pacs;
+        fixPacientes();
+        guardar(); irA('dashboard'); toast(`✅ ${pacs.length} pazienti importati`);
+      }catch(err){ alert('Errore nel file: '+err.message); }
+    };
+    reader.readAsText(file);
+  };
+  input.click();
+}
+
+// ---- MOCK DATA ----
+function getMock(){
+  const mock=[
+    {id:1,nombre:"Carlo Mendozza",edad:42,telefono:"329 112 2334",email:"carlo@mail.it",zonas:["Lombare","Anca"],estado:"Attivo",sesiones_realizadas:4,sesiones_restantes:6,fecha_inicio:"2026-01-10",proxima_cita:"2026-05-24",hora_cita:"10:00",dolor_inicial:8,dolor_actual:3,motivo:"Lombalgia cronica post-sforzo sportivo.",historial:[{id:101,fecha:"2026-01-10",texto:"Prima visita. Dolore acuto L4-L5."},{id:102,fecha:"2026-02-15",texto:"Miglioramento notevole. Maggiore mobilità in flessione."}],pagos:[{id:201,fecha:"2026-01-10",monto:60,metodo:"Satispay",lugar:"Studio A",pagado:true},{id:202,fecha:"2026-02-15",monto:55,metodo:"Carta",lugar:"Studio A",pagado:true}],citas:[{id:301,fecha:"2026-01-10",hora:"09:00",zona:"Lombare",nota:"Prima seduta."},{id:302,fecha:"2026-02-15",hora:"10:00",zona:"Anca",nota:"Miglioramento in flessione."},{id:303,fecha:"2026-05-24",hora:"10:00",zona:"Lombare",nota:""}],dolorHistorial:[{fecha:"2026-01-10",val:8},{fecha:"2026-02-15",val:5},{fecha:"2026-03-10",val:3}]},
+    {id:2,nombre:"Anna Gómez",edad:29,telefono:"347 443 3221",email:"anna.gomez@mail.it",zonas:["Cervicale","ATM"],estado:"Prima visita",sesiones_realizadas:1,sesiones_restantes:0,fecha_inicio:"2026-05-18",proxima_cita:"2026-05-22",hora_cita:"11:00",dolor_inicial:7,dolor_actual:6,motivo:"Cervicalgia tensionale e bruxismo.",historial:[{id:103,fecha:"2026-05-18",texto:"Valutazione iniziale. Limitazione rotazione cervicale."}],pagos:[{id:203,fecha:"2026-05-18",monto:75,metodo:"Contanti",lugar:"Domicilio",pagado:false}],citas:[{id:304,fecha:"2026-05-18",hora:"11:00",zona:"Cervicale",nota:"Prima valutazione."},{id:305,fecha:"2026-05-22",hora:"11:00",zona:"Cervicale",nota:""}],dolorHistorial:[{fecha:"2026-05-18",val:7}]},
+    {id:3,nombre:"Laura Torres",edad:35,telefono:"333 998 8776",email:"laura@mail.it",zonas:["Ginocchio"],estado:"In pausa",sesiones_realizadas:8,sesiones_restantes:2,fecha_inicio:"2025-11-05",proxima_cita:"",dolor_inicial:9,dolor_actual:2,motivo:"Post-operatorio LCA ginocchio destro.",historial:[{id:104,fecha:"2025-11-05",texto:"Fase iniziale. Guadagno di flesso-estensione."}],pagos:[{id:204,fecha:"2025-11-05",monto:120,metodo:"Bonifico",lugar:"Studio B",pagado:true}],citas:[{id:306,fecha:"2025-11-05",hora:"16:00",zona:"Ginocchio",nota:"Inizio post-op."}],dolorHistorial:[{fecha:"2025-11-05",val:9},{fecha:"2025-12-01",val:6},{fecha:"2026-01-15",val:4},{fecha:"2026-02-20",val:2}]},
+    {id:4,nombre:"Giuseppe Reale",edad:61,telefono:"328 221 1005",email:"giuseppe@mail.it",zonas:["Spalla"],estado:"Dimesso",sesiones_realizadas:10,sesiones_restantes:0,fecha_inicio:"2025-09-12",proxima_cita:"",dolor_inicial:8,dolor_actual:0,motivo:"Tendinopatia sovraspinato spalla sinistra.",historial:[{id:106,fecha:"2025-09-12",texto:"Inizio trattamento."},{id:107,fecha:"2026-01-20",texto:"Dimissione per raggiungimento obiettivi."}],pagos:[{id:205,fecha:"2025-09-12",monto:50,metodo:"Satispay",lugar:"Studio A",pagado:true}],citas:[{id:307,fecha:"2025-09-12",hora:"17:00",zona:"Spalla",nota:"Prima seduta."},{id:308,fecha:"2026-01-20",hora:"18:00",zona:"Spalla",nota:"Dimissione. Range completo."}],dolorHistorial:[{fecha:"2025-09-12",val:8},{fecha:"2025-11-01",val:5},{fecha:"2026-01-20",val:0}]}
+  ];
+  mock.forEach(p=>{ p.avatarColor=avatarColor(p.nombre); (p.pagos||[]).forEach(pg=>pg.netoPre=calcNeto(pg.monto,pg.metodo,pg.lugar).neto); });
+  return mock;
+}
+
+// Richiama calcUpdate dopo render calcolatrice
+const _origRender = render;
+function render(){
+  calcStats();
+  renderNav();
+  const c = document.getElementById('content');
+  const p = state.pagina;
+  if(p==='dashboard') c.innerHTML = viewDashboard();
+  else if(p==='calendario') c.innerHTML = viewCalendario();
+  else if(['todos','activos','primera','pausa','alta'].includes(p)) c.innerHTML = viewLista();
+  else if(p==='paciente-ver') c.innerHTML = viewDetalle();
+  else if(p==='contabilidad') c.innerHTML = viewContabilidad();
+  else if(p==='calculadora'){ c.innerHTML = viewCalcolatrice(); setTimeout(()=>calcUpdate(state.calcBruto), 10); }
+}
+
+window.onload=init;
+</script>
+
+</body></html>
